@@ -27,27 +27,65 @@ Route::get('/register', function () {
     return view('register');
 });
 
-# routing untuk halaman buyerProfile
-Route::get('/buyerProfile', function () {
-    return view('buyerProfile');
+# routing untuk halaman buyer Profile
+Route::get('/buyers/profile', function () {
+    return view('buyers.profile', [
+        'title' => 'Kos Saya',
+        'name' => 'Johnny Sins',
+        'email' => 'mail@email.com',
+        'optionName' => 'Kos Saya',
+        'propertyName' => 'Kosan Brothel Gerlong Triple X',
+        'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069',
+        'propertyPrice' => 'Rp 1.000.000',
+        'duration' => '21/06/2022 - 32/13/2069'
+        
+    ]);
 });
 
-# routing untuk halaman buyerHistory
-Route::get('/buyerHistory', function () {
-    return view('buyerHistory');
+# routing untuk halaman buyer History
+Route::get('/buyers/history', function () {
+    return view('buyers.history', [
+        'title' => 'Riwayat Kos',
+        'name' => 'Johnny Sins',
+        'email' => 'mail@email.com',
+        'optionName' => 'Riwayat Kos',
+        'propertyName' => 'Kosan Brothel Gerlong Triple X',
+        'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069',
+        'propertyPrice' => 'Rp 1.000.000',
+        'duration' => '21/06/2022 - 32/13/2069'
+    ]);
 });
 
-# routing untuk halaman buyerVerification
-Route::get('/buyerVerification', function () {
-    return view('buyerVerification');
+# routing untuk halaman buyer Verification
+Route::get('/buyers/verification', function () {
+    return view('buyers.verification', [
+        'title' => 'Verifikasi Akun',
+        'name' => 'Johnny Sins',
+        'email' => 'mail@email.com',
+        'optionName' => 'Verifikasi Akun'
+    ]);
 });
 
-# routing untuk halaman sellerProfile
-Route::get('/sellerProfile', function () {
-    return view('sellerProfile');
+# routing untuk halaman seller Profile
+Route::get('sellers/profile', function () {
+    return view('sellers.profile', [
+        'title' => 'Daftar Property',
+        'name' => 'Fukada Eimi',
+        'email' => 'mail@email.com',
+        'optionName' => 'Daftar Property',
+        'propertyName' => 'Kosan Brothel Gerlong Triple X',
+        'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
+    ]);
 });
 
-# routing untuk halaman sellerProfile
-Route::get('/sellerHistory', function () {
-    return view('sellerHistory');
+# routing untuk halaman seller Profile
+Route::get('/sellers/history', function () {
+    return view('sellers.history', [
+        'title' => 'Riwayat Transaksi',
+        'name' => 'Fukada Eimi',
+        'email' => 'mail@email.com',
+        'optionName' => 'Riwayat Transaksi',
+        'propertyName' => 'Kosan Brothel Gerlong Triple X',
+        'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
+    ]);
 });
