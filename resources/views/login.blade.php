@@ -25,11 +25,11 @@
             <div class="rounded p-4" style="background-color: #E7F9FD;">
                 <div class="form-group mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input id="username" class="form-control" placeholder="Masukkan username anda" required>
+                    <input type="text" class="form-control" id="username" placeholder="Masukkan username anda" required>
                 </div>
                 <div class="form-group mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" class="form-control" id="password" placeholder="Masukkan password anda" required>
                     <input type="checkbox" onclick="showPass()">Show Password
                 </div>
                 <button type="submit" class="btn btn-primary px-5 py-2 position-relative bottom-0 start-50 translate-middle-x">Login</button>
@@ -45,16 +45,7 @@
     </div>
 
     <!-- custom js file link  -->
+    <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script>
-        function showPass() {
-            var pass = document.getElementById("password");
-            if (pass.type === "password") {
-                pass.type = "text";
-            } else {
-                pass.type = "password";
-            }
-        }
-    </script>
 </body>
 </html>
