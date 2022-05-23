@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardSellerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// NEED TO FIX THESE ROUTES LATER
 Route::get('/', function () {
-    return view('welcome');
+    return view('index', [
+        'title' => 'Home'
+    ]);
+});
+
+Route::get('/products', function () {
+    return view('browsing', [
+        'title' => 'Home'
+    ]);
 });
 
 # routing untuk halaman login
@@ -71,6 +82,12 @@ Route::get('/buyers/verification', function () {
 });
 
 # routing untuk halaman seller Profile
+// Route::resource('/seller/dashboard', DashboardSellerController::class)->except('show');
+
+Route::get('/seller/dashboard', [DashboardSellerController::class, 'index']);
+
+Route::delete('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'destroy']);
+
 Route::get('sellers/profile', function () {
     return view('sellers.profile', [
         'title' => 'Daftar Property',
