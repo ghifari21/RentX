@@ -1,6 +1,6 @@
 @extends('buyers.layouts.main')
 
-@section('container')
+@section('main-content')
     <div class="row">
         <!-- left side section -->
         @include('buyers.layouts.sidebar')

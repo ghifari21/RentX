@@ -1,11 +1,23 @@
-<navbar class="navbar py-3 px-5 mb-5" style="background-color: #2055CB;">
-    <a href="#" style="text-decoration: none;"><img src="" alt="RentX" class="ms-4"></a>
-    <div class="nav-button me-4">
-        <i class="fa fa-bell me-2 fs-4"></i>
-        <i class="fa fa-envelope me-5 fs-4"></i>
+<nav class="navbar navbar-expand-md mb-5 py-3 px-5" style="background-color: #2055CB;">
+    <div class="container-fluid">
+        <div class="logo">
+			<a class="navbar-brand" href="#"><img src="" alt="RentX" class="ms-4"></a>
+		</div>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" href="#">Link</a>
+            </li>
+        </ul>
+        
         <form action="/logout" method="post">
             @csrf
-            <button type="submit"><i class="fa fa-user fs-3"></i> Logoout</button>
+            <button type="button" class="btn btn-outline-light me-2">Logout</button>
         </form>
+        </div>
     </div>
-</navbar>
+</nav>

@@ -6,8 +6,8 @@
         </div>
         <div class="col">
             <div class="row mt-1">
-                <p class="fw-bold mb-0">{{ $name }}</p>
-                <p class="">{{ $email }}</p>
+                <p class="fw-bold mb-0">{{ auth()->user()->name }}</p>
+                <p class="">{{ auth()->user()->email }}</p>
             </div>
             <div class="row-1">
                 <a href="#"><button class="btn btn-outline-primary">Edit Profile</button></a>
