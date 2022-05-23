@@ -3,6 +3,9 @@
     <div class="nav-button me-4">
         <i class="fa fa-bell me-2 fs-4"></i>
         <i class="fa fa-envelope me-5 fs-4"></i>
-        <i class="fa fa-user fs-3"></i>
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit"><i class="fa fa-user fs-3"></i> Logoout</button>
+        </form>
     </div>
 </navbar>

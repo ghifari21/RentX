@@ -25,7 +25,7 @@
                         </div>
                         <div class="row invisible"><p>Invisible</p></div>
                         <div class="row">
-                                <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
+                            <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="row invisible"><p>Invisible</p></div>
                         <div class="row">
-                                <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
+                            <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
                         </div>
                     </div>
                 </div>
