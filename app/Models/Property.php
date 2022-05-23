@@ -11,6 +11,7 @@ class Property extends Model
 
     protected $guarded = ['id'];
 
+
     // seller relation
     public function seller() {
         return $this->belongsTo(Seller::class);
@@ -24,5 +25,9 @@ class Property extends Model
     // order relation
     public function order() {
         return $this->hasMany(Order::class);
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
     }
 }
