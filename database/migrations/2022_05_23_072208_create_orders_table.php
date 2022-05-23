@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('buyers_id');
+            $table->foreignId('property_id');
             $table->date('date_order');
             $table->date('rent_start');
             $table->date('rent_finish');

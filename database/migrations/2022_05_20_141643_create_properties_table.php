@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_available')->default(true);
             $table->text('address');
             $table->text('link_location');
-            $table->string('price');
+            $table->integer('price');
             $table->string('photo_1');
             $table->string('photo_2');
             $table->string('photo_3');
