@@ -91,21 +91,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Seller::factory()->create([
-            'user_id' => 1,
+            'user_id' => 4,
             'nik' => '1287461241246',
             'phone' => '082564167241',
             'address' => 'jl eka jumpa',
             'photo_profile' => "https://source.unsplash.com/300x300?person",
         ]);
         Seller::factory()->create([
-            'user_id' => 2,
+            'user_id' => 5,
             'nik' => '128746121417266',
             'phone' => '0825644124241',
             'address' => 'jl eka ss',
             'photo_profile' => "https://source.unsplash.com/300x300?person",
         ]);
         Seller::factory()->create([
-            'user_id' => 3,
+            'user_id' => 6,
             'nik' => '127458612784618',
             'phone' => '0825644214178',
             'address' => 'jl eka kk',
@@ -114,9 +114,9 @@ class DatabaseSeeder extends Seeder
 
         Property::factory(25)->create();
 
-        Order::factory(20)->create();
+        // Order::factory(20)->create();
 
-        Review::factory(20)->create();
+        // Review::factory(20)->create();
     }
 
 }
