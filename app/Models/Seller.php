@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class Seller extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    // seller relation
-    public function seller() {
-        return $this->belongsTo(Seller::class);
+    // user relation
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
-    // review relation
-    public function review() {
-        return $this->hasMany(Review::class);
+    // property relation
+    public function property() {
+        return $this->hasMany(Property::class);
     }
 
     // order relation

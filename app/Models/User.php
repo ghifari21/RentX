@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Buyer;
 
 class User extends Authenticatable
 {
@@ -18,8 +17,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -46,5 +47,10 @@ class User extends Authenticatable
     // buyer relation
     public function buyer() {
         return $this->hasOne(Buyer::class);
+    }
+
+    // seller relation
+    public function seller() {
+        return $this->hasOne(Seller::class);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Buyer extends Model
 {
@@ -15,5 +14,15 @@ class Buyer extends Model
     // user relation
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    // review relation
+    public function review() {
+        return $this->hasMany(Review::class);
+    }
+
+    // order relation
+    public function order() {
+        return $this->hasMany(Order::class);
     }
 }
