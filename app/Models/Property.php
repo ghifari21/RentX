@@ -11,6 +11,13 @@ class Property extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeFilter($query, array $filters) {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where(function($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%')->orWhere('address', 'like', '%' . $search . '%')->orWhere('province', 'like', '%' . $search . '%')->orWhere('city', 'like', '%' . $search . '%')->orWhere('district', 'like', '%' . $search . '%');
+            });
+        });
+    }
 
     // seller relation
     public function seller() {
