@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Seller;
 use App\Models\Property;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,10 +96,25 @@ class DashboardSellerController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function showOrder(Property $property)
+    public function showOrder(Property $property,Order $order)
     {
-        //
 
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        // dd($seller->id);
+        // dd(Property::where('seller_id', $seller->id)->get());
+        return view('', [
+            'title' => 'Order Property',
+            'optionName' => 'Order Property',
+            'orders' => Order::where([['seller_id','=',$seller->id],['status','=','pending']])->get()
+            // 'profile' => Seller::where('user_id', auth()->user()->id)->get()
+        ]);
+    }
+
+    public function acceptOrder(Request $request,Order $order){
+        $order->status="accepted";
+
+        //Property::where('id', $property->id)->update($validatedData);
+        // Order::where('id', $order->id)->update->($order);
     }
 
     /**
