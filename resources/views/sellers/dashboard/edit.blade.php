@@ -9,12 +9,17 @@
 
         <!-- ================================
               vvvv  MASIH BELUM BERES   vvvv  -->
-    <form action="/seller/dashboard/" method="POST" enctype="multipart/form-data">
+    <form action="/seller/dashboard/{{ $property->slug }}" method="POST" enctype="multipart/form-data">
+        @method('put')
         @csrf
         <div class="add-rentplace border border-3 test rounded p-3 mt-4">
             <p class="add-rentplace-label fw-bold">Foto Kos / Kontrakan</p>
             <div class="d-flex text-center gap-5">
-                {{-- <input type="file"> --}}
+                <input type="hidden" value="https://source.unsplash.com/300x300?house" name="photo_1">
+                <input type="hidden" value="https://source.unsplash.com/300x300?house" name="photo_2">
+                <input type="hidden" value="https://source.unsplash.com/300x300?house" name="photo_3">
+                <input type="hidden" value="https://source.unsplash.com/300x300?house" name="photo_4">
+                <input type="hidden" value="https://source.unsplash.com/300x300?house" name="photo_5">
                 <div class="photo-frame">Foto 1</div>
                 <div class="photo-frame">Foto 2</div>
                 <div class="photo-frame">Foto 3</div>
@@ -28,7 +33,7 @@
             <div class="form-group row mb-2">
                 <label for="title" class="col-sm-2 col-form-label add-rentplace-label">Judul Pos</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Judul Pos">
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="Judul Pos" value="{{ old('title', $property->title) }}">
                     @error('title')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -40,7 +45,7 @@
             <div class="form-group row align-items-center">
                 <label for="price" class="col-sm-2 col-form-label add-rentplace-label">Harga Sewa</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Harga Sewa">
+                    <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" id="price" placeholder="Harga Sewa" value="{{ old('price', $property->price) }}">
                     @error('price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -48,7 +53,7 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-auto">
+                {{-- <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
                         <label for="intervalBayar"> / </label>
                     </div>
@@ -62,42 +67,48 @@
                         <input class="form-check-input" type="radio" name="rent_time" id="inlineRadio2" value="Tahun">
                         <label class="form-check-label" for="inlineRadio2">Tahun</label>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-sm-1">
                     <p class="add-rentplace-label">Disewakan Untuk</p>
                 </div>
 
-                <div class="col-sm-auto">
+                {{-- <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio1" value="Putra">
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio1" value="Putra" @if (old('rent_for') == "Putra")
+                            checked
+                        @endif>
                         <label class="form-check-label" for="inlineRadio1">Putra</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Putri">
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Putri" @if (old('rent_for') == "Putri")
+                            checked
+                        @endif>>
                         <label class="form-check-label" for="inlineRadio2">Putri</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Campur">
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Campur" @if (old('rent_for') == "Campur")
+                            checked
+                        @endif>>
                         <label class="form-check-label" for="inlineRadio2">Campur</label>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             {{-- ga perlu kayanya --}}
-            <div class="form-group row mb-2">
+            {{-- <div class="form-group row mb-2">
                 <label for="inputFasilitas" class="col-sm-2 col-form-label add-rentplace-label">Fasilitas</label>
                 <div class="col-sm-10">
                     <textarea rows="4" class="form-control" id="inputFasilitas" placeholder="Fasilitas yang Disediakan"></textarea>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="form-group row mb-2">
                 <label for="inputDeskripsi" class="col-sm-2 col-form-label add-rentplace-label">Deskripsi</label>
                 <div class="col-sm-10">
-                    <textarea rows="4" class="form-control @error('description') is-invalid @enderror" id="inputFasilitas" name="description" placeholder="Deskripsi dari Kos / Kontrakan"></textarea>
+                    <textarea rows="4" class="form-control @error('description') is-invalid @enderror" id="inputFasilitas" name="description" placeholder="Deskripsi dari Kos / Kontrakan">{{ old('description', $property->description) }}</textarea>
                     @error('price')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -106,11 +117,11 @@
                 </div>
             </div>
 
-            <div class="form-group row mb-2">
+            {{-- <div class="form-group row mb-2">
                 <label for="" class="col-sm-2 col-form-label add-rentplace-label"></label>
                 <div class="col-sm-2">
                     <label for="inputJumlahKamar">Jumlah Kamar</label>
-                    <input type="number" class="form-control @error('total_room') is-invalid @enderror" id="inputJumlahKamar" name="total_room" placeholder="Jumlah Kamar">
+                    <input type="number" class="form-control @error('total_room') is-invalid @enderror" id="inputJumlahKamar" name="total_room" placeholder="Jumlah Kamar" value="{{ old('total_room') }}">
                     @error('total_room')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -120,7 +131,7 @@
 
                 <div class="col-sm-2">
                     <label for="inputSisaKamar">Sisa Kamar</label>
-                    <input type="number" class="form-control @error('available_room') is-invalid @enderror" id="inputSisaKamar" name="available_room" placeholder="Sisa Kamar">
+                    <input type="number" class="form-control @error('available_room') is-invalid @enderror" id="inputSisaKamar" name="available_room" placeholder="Sisa Kamar" value="{{ old('available_room') }}">
                     @error('available_room')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -128,13 +139,13 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div> --}}
 
-                <div class="col-sm-4">
+                {{-- <div class="col-sm-4">
                     <div class="d-flex justify-content-between">
                         <div>
                             <label for="inputPanjangKamar">Panjang Kamar</label>
-                            <input type="number" class="form-control @error('room_length') is-invalid @enderror" name="room_length" id="inputPanjangKamar" placeholder="Panjang Kamar">
+                            <input type="number" class="form-control @error('room_length') is-invalid @enderror" name="room_length" id="inputPanjangKamar" placeholder="Panjang Kamar" value="{{ old('room_length') }}">
                         @error('room_length')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -149,7 +160,7 @@
 
                         <div>
                             <label for="inputLebarKamar">Lebar Kamar</label>
-                            <input type="number" class="form-control @error('room_width') is-invalid @enderror" name="room_width" id="inputLebarKamar" placeholder="Lebar Kamar">
+                            <input type="number" class="form-control @error('room_width') is-invalid @enderror" name="room_width" id="inputLebarKamar" placeholder="Lebar Kamar" value="{{ old('room_width') }}">
                             @error('room_length')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -158,16 +169,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="add-rentplace border border-3 rounded p-3 mt-4">
             <p class="add-rentplace-label fw-bold">Alamat Kos / Kontrakan</p>
-            <form action="POST">
                 <div class="form-group row mb-2">
                     <label for="inputAlamat" class="col-sm-2 col-form-label add-rentplace-label">Alamat</label>
                     <div class="col-sm-10">
-                        <textarea rows="4" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Alamat dari Kos / Kontrakan"></textarea>
+                        <textarea rows="4" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Alamat dari Kos / Kontrakan">{{ old('address', $property->address) }}</textarea>
                         @error('address')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -176,7 +186,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row mb-2">
+                {{-- <div class="form-group row mb-2">
                     <label for="" class="col-sm-2 col-form-label add-rentplace-label"></label>
                     <div class="col-sm">
                         <label class="add-rentplace-label" for="provinsi">Provinsi</label>
@@ -198,15 +208,14 @@
                             <option value=""></option>
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group row mb-2">
                     <label for="inputLink" class="col-sm-2 col-form-label add-rentplace-label">Link Maps</label>
                     <div class="col-sm-10">
-                        <input type="url" class="form-control" id="inputLink" name="url_location" placeholder="URL Lokasi Kos / Kontrakan">
+                        <input type="url" class="form-control" id="inputLink" name="link_location" placeholder="URL Lokasi Kos / Kontrakan" value="{{ old('link_location', $property->link_location) }}">
                     </div>
                 </div>
-            </form>
         </div>
 
         <div class="add-rentplace-buttons d-flex justify-content-end mt-4">

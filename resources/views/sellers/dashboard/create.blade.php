@@ -9,7 +9,7 @@
 
         <!-- ================================
               vvvv  MASIH BELUM BERES   vvvv  -->
-    <form action="/seller/dashboard/" method="POST" enctype="multipart/form-data">
+    <form action="/seller/dashboard" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="add-rentplace border border-3 test rounded p-3 mt-4">
             <p class="add-rentplace-label fw-bold">Foto Kos / Kontrakan</p>

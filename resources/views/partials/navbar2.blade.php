@@ -7,12 +7,12 @@
 		<div class="collapse navbar-collapse" id="navbarsExample04">
 			<ul class="navbar-nav me-auto mb-2 mb-md-0">
 				<li class="nav-item">
-					<a class="nav-link text-dark" href="/landing_page">Home</a>
+					<a class="nav-link text-dark" href="/">Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-dark" href="#">Link</a>
 				</li>
-			</ul>	
+			</ul>
 			<a href="/login"><button type="button" class="btn btn-info me-3">Login</button></a>
 			<a href="/register"><button type="button" class="btn btn-outline-light">Register</button></a>
 		</div>

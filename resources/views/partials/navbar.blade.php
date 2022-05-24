@@ -7,16 +7,16 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Home</a>
+            <a class="nav-link text-dark" href="/">Home</a>
             </li>
             <li class="nav-item">
             <a class="nav-link text-dark" href="#">Link</a>
             </li>
         </ul>
-        
-        <form action="/logout" method="post">
+
+        <form action="/logout" method="POST">
             @csrf
-            <button type="button" class="btn btn-outline-light me-2">Logout</button>
+            <button type="submit" class="btn btn-outline-light me-2">Logout</button>
         </form>
         </div>
     </div>

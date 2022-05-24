@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="landing-page-recommendation">
-			<h2 class="mt-4 mb-2">Rekomendasi Kos / Kontrakan</h2>
+			<h2 class="mt-4 mb-3">Rekomendasi Kos / Kontrakan</h2>
 
 			<!-- Slider main container -->
 			<div class="swiper">
@@ -24,78 +24,26 @@
                     <!-- Slides -->
                     {{-- slide 1 --}}
                     <div class="swiper-slide">
+                        @foreach ($properties->take(5) as $property)
                         <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
                             <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">{{ $property->title }}</p>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     {{-- slide 2 --}}
                     <div class="swiper-slide">
+                        @foreach ($properties->skip(5) as $property)
                         <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
                             <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <p class="card-text">{{ $property->title }}</p>
                             </div>
                         </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                     {{-- slide 3 --}}
@@ -115,51 +63,49 @@
 			<h2 class="mt-4 mb-2">Area Kos / Kontrakan Populer</h2>
 
 			<div class="center">
-                <div class="area-card">
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
+            <div class="area-card">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
 
-				<button class="btn more-btn">Lihat Lainnya</button>
-			</div>
-		</div>
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
 
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary">Lihat Lainnya</button>
+      </div>
 	</div>
 
 	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="js/swiper.js"></script>
+  <script src="{{ asset('js/swiper.js') }}"></script>
 
     <!-- footer section  -->
     @include('partials.footer2')
