@@ -18,12 +18,15 @@ class OrderFactory extends Factory
     {
         return [
             //
-            'buyers_id'=> mt_rand(1, 3),
+            'seller_id'=>mt_rand(1, 3),
+            'buyer_id'=> mt_rand(1, 3),
+            'property_id'=> mt_rand(1, 3),
             'date_order' => $this->faker->date(),
-            'rent_start' => $this->faker->date(),
-            'rent_finish' => $this->faker->date(),
-            'rent_time'=> $this->faker->numberBetween(1,365),
-            'price'=> $this->faker->numberBetween(100000,1000000),
+            'check_in' => $this->faker->date(),
+            'check_out' => $this->faker->date(),
+            'duration'=> $this->faker->numberBetween(1,365),
+            'total_payment'=> $this->faker->numberBetween(100000,1000000),
+            'status'=>"accepted"
         ];
     }
 }

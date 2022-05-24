@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('buyers_id');
+            $table->foreignId('seller_id');
+            $table->foreignId('buyer_id');
             $table->foreignId('property_id');
             $table->date('date_order');
-            $table->date('rent_start');
-            $table->date('rent_finish');
-            $table->integer('rent_time');
-            $table->integer('price');
+            $table->date('check_in');
+            $table->date('check_out');
+            $table->integer('duration');
+            $table->integer('total_payment');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
