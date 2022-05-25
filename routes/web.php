@@ -166,3 +166,28 @@ Route::get('/admin/daftarBuyer', function () {
         'adminName' => 'Axel Eldrian'
     ]);
 });
+
+
+Route::get('/buyers/editProfile', function () {
+    return view('buyers.editProfile', [
+        'title' => 'Edit Profile',
+        'name' => 'Johnny Sins',
+        'phone' => '085234834',
+        'email' => 'mail@email.com',
+        'username' => 'john69',
+        'password' => 'john69',
+        'repassword' => 'john69'
+    ]);
+});
+
+Route::get('/sellers/editProfile', function () {
+    return view('sellers.editProfile', [
+        'title' => 'Edit Profile',
+        'name' => 'Johnny Sins',
+        'phone' => '085234834',
+        'email' => 'mail@email.com',
+        'username' => 'john69',
+        'password' => 'john69',
+        'repassword' => 'john69'
+    ]);
+});
