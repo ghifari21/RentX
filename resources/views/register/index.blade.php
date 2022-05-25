@@ -13,14 +13,14 @@
             <div class="rounded p-4" style="background-color: #E7F9FD;">
                 <div class="form-group mb-3">
                     <label for="front-name" class="form-label">Nama Lengkap</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" required">
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" required" value="{{ old('name') }}">
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-                <div class="form-group mb-3">
+                {{-- <div class="form-group mb-3">
                     <label for="phone" class="form-label">No. Telepon</label>
                     <input type="number" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" required>
                     @error('phone')
@@ -28,10 +28,10 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="form-group mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" required>
+                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" required value="{{ old('email') }}">
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" required>
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" required value="{{ old('username') }}">
                     @error('username')
                         <div class="invalid-feedback">
                             {{ $message }}

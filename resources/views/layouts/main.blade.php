@@ -20,5 +20,20 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const img_preview = document.querySelector('.img-preview');
+
+            img_preview.style.display = 'block';
+
+            const of_reader = new FileReader();
+            of_reader.readAsDataURL(image.files[0]);
+
+            of_reader.onload = function(oFREvent) {
+                img_preview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 </body>
 </html>

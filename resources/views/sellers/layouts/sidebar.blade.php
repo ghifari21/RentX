@@ -2,7 +2,7 @@
     <!-- identity section -->
     <div class="row mb-3">
         <div class="col">
-            <img src="https://media.discordapp.net/attachments/758554583185621042/790106370706898985/131926727_2886493588258144_292419452096811329_n.png"
+            <img src="{{ asset('/storage/' . $seller->photo_profile) }}"
                 class="rounded img-fluid" alt="Avatar">
         </div>
         <div class="col">
@@ -11,7 +11,7 @@
                 <p class="">{{ auth()->user()->email }}</p>
             </div>
             <div class="row-1">
-                <a href="/sellers/editProfile"><button class="btn btn-outline-primary">Edit Profile</button></a>
+                <a href="/seller/dashboard/{{ auth()->user()->username }}/edit"><button class="btn btn-outline-primary">Edit Profile</button></a>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <i class="fa-solid fa-house"></i>
         </div>
         <div class="col">
-            <a href="/sellers/profile" class="text-black" style="text-decoration: none;">
+            <a href="/seller/dashboard" class="text-black" style="text-decoration: none;">
                 <p>Daftar Kos / Kontrakan</p>
             </a>
         </div>
@@ -41,7 +41,7 @@
             <i class="fa-solid fa-clock-rotate-left"></i>
         </div>
         <div class="col">
-            <a href="/seller/history" class="text-black" style="text-decoration: none;">
+            <a href="/seller/dashboard/history" class="text-black" style="text-decoration: none;">
                 <p>Riwayat Transaksi</p>
             </a>
         </div>
