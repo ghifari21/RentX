@@ -26,7 +26,7 @@ class LoginController extends Controller
              * TO DO
              * Change below line to proper redirect
              */
-            return redirect()->intended('/buyers/profile');
+            return redirect()->intended('/');
         }
 
         return back()->with('loginError', 'Login failed!');

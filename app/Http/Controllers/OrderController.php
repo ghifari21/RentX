@@ -28,14 +28,14 @@ class OrderController extends Controller
         $validatedData['check_out'] = date_add($date_in, date_interval_create_from_date_string($date_interval));
         $validatedData['date_order'] = $validatedData['check_in'];
 
-        //seller id 
+        //seller id
         $validatedData['seller_id']=$property->seller_id;
         // $seller = Seller::firstWhere('id',$property->seller_id);
-        
+
         // $user_seller = User::firstWhere('id',$seller->user_id);
         // $seller_name = $user_seller->name;
         // $validatedData['seller_name'] =$seller_name;
-        
+
         //buyer id dan nama
         $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
         $validatedData['buyer_id'] = $buyer->id;
@@ -43,7 +43,7 @@ class OrderController extends Controller
         // $user_buyer = User::firstWhere('id',$buyer->id);
         // $buyer_name=$user_buyer->name;
         // $validatedData['buyer_name'] =$buyer_name;
-        
+
         //properti id dan nama
         $validatedData['property_id']=$property->id;
         // $validatedData['property_name']=$property->title;

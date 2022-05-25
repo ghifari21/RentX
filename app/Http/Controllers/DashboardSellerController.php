@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Seller;
 use App\Models\Property;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,8 @@ class DashboardSellerController extends Controller
         return view('sellers.dashboard.index', [
             'title' => 'Daftar Property',
             'optionName' => 'Daftar Property',
-            'properties' => Property::where('seller_id', $seller->id)->get()
+            'properties' => Property::where('seller_id', $seller->id)->get(),
+            'seller' => Seller::firstWhere('user_id', auth()->user()->id)
             // 'profile' => Seller::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -137,15 +139,15 @@ class DashboardSellerController extends Controller
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
             //ganti is availabe
-            
+
             return redirect('/seller/orders')->with('success', 'Order has been accepted');
-    
+
         }else if($request->input('status')=='rejected'){
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
             return redirect('/seller/orders')->with('success', 'Order has been rejected');
         }
-        
+
         //Property::where('id', $property->id)->update($validatedData);
         // Order::where('id', $order->id)->update->($order);
     }
@@ -246,5 +248,61 @@ class DashboardSellerController extends Controller
         Property::destroy($property->id);
 
         return redirect('/seller/dashboard')->with('success', 'Post has been deleted!');
+    }
+
+    public function editProfile(User $user) {
+        return view('sellers.editProfile', [
+            'title' => 'Edit Profile',
+            'seller' => Seller::firstWhere('user_id', $user->id)
+        ]);
+    }
+
+    public function updateProfile(Request $request, User $user) {
+        $user_rules = [
+            'name' => 'required',
+            'email' => 'required',
+        ];
+
+        if ($request->username != $user->username) {
+            $user_rules['username'] = 'required|unique:users';
+        } else {
+            $user_rules['username'] = 'required';
+        }
+
+        $validatedDataUser = $request->validate($user_rules);
+
+        $seller_rules = [
+            'phone' => '',
+            'address' => '',
+            'photo_profile' => 'image|file|max:5120'
+        ];
+
+        $validatedDataSeller = $request->validate($seller_rules);
+
+        if ($request->file('photo_profile')) {
+            if ($request->old_photo_profile) {
+                Storage::delete($request->old_photo_profile);
+            }
+            $validatedDataSeller['photo_profile'] = $request->file('photo_profile')->store('sellers-photo-profile');
+        }
+
+        User::where('id', $user->id)->update($validatedDataUser);
+        Seller::where('user_id', $user->id)->update($validatedDataSeller);
+
+        return redirect('seller/dashboard')->with('success', 'Your profile has been updated!');
+    }
+
+    public function history() {
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        return view('sellers.history', [
+            'title' => 'Riwayat Transaksi',
+            'seller' => $seller,
+            'orders' => Order::where('seller_id', $seller->id)->get(),
+            'name' => 'Fukada Eimi',
+            'email' => 'mail@email.com',
+            'optionName' => 'Riwayat Transaksi',
+            'propertyName' => 'Kosan Brothel Gerlong Triple X',
+            'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
+        ]);
     }
 }
