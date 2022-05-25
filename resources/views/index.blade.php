@@ -102,6 +102,7 @@
 
             <button class="btn btn-primary">Lihat Lainnya</button>
       </div>
+    </div>
 	</div>
 
 	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
