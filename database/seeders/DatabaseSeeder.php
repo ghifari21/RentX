@@ -30,18 +30,21 @@ class DatabaseSeeder extends Seeder
 
         // User::factory(10)->create();
 
+        //user id 1
         User::factory()->create([
             'name' => 'Joni',
             'username' => 'jonikul',
             'email' => 'joni@gmail.com',
             'password' => Hash::make('password'),
         ]);
+        //user id 2
         User::factory()->create([
             'name' => 'Chad',
             'username' => 'chadsm',
             'email' => 'chad@gmail.com',
             'password' => Hash::make('password'),
         ]);
+        //user id 3
         User::factory()->create([
             'name' => 'Giga',
             'username' => 'gigansm',
@@ -68,6 +71,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '08153461247'
         ]);
 
+        //user id 4
         User::factory()->create([
             'name' => 'Sins',
             'username' => 'sinsful',
@@ -75,6 +79,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'account_type' => 'seller'
         ]);
+        //user id 5
         User::factory()->create([
             'name' => 'Eimi',
             'username' => 'eimin',
@@ -82,6 +87,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'account_type' => 'seller'
         ]);
+        //user id 6
         User::factory()->create([
             'name' => 'Fukada',
             'username' => 'fukadan',

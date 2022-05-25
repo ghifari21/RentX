@@ -100,19 +100,52 @@ class DashboardSellerController extends Controller
     {
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        $orders = Order::with(['seller', 'buyer', 'property']);
+        $orders = $orders->where([['seller_id','=',$seller->id],['status','=','pending']])->get();
+
         // dd($seller->id);
         // dd(Property::where('seller_id', $seller->id)->get());
-        return view('', [
+        return view('sellers.dashboard.transaksi', [
             'title' => 'Order Property',
             'optionName' => 'Order Property',
-            'orders' => Order::where([['seller_id','=',$seller->id],['status','=','pending']])->get()
+            'orders' => $orders
             // 'profile' => Seller::where('user_id', auth()->user()->id)->get()
         ]);
     }
 
-    public function acceptOrder(Request $request,Order $order){
-        $order->status="accepted";
+    public function showTransaction(Property $property,Order $order)
+    {
 
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        $orders = Order::with(['seller', 'buyer', 'property']);
+        $orders = $orders->where([['seller_id','=',$seller->id],['status','=','pending']])->get();
+
+        // dd($seller->id);
+        // dd(Property::where('seller_id', $seller->id)->get());
+        return view('sellers.dashboard.transaksi', [
+            'title' => 'Order Property',
+            'optionName' => 'Order Property',
+            'orders' => $orders
+            // 'profile' => Seller::where('user_id', auth()->user()->id)->get()
+        ]);
+    }
+
+    public function orderAction(Request $request,Order $order){
+        //$order->status="accepted";
+        //dd("tes");
+        if($request->input('status')=='accepted'){
+            $data = $request->validate(['status'=>"required"]);
+            Order::where('id', $order->id)->update($data);
+            //ganti is availabe
+            
+            return redirect('/seller/orders')->with('success', 'Order has been accepted');
+    
+        }else if($request->input('status')=='rejected'){
+            $data = $request->validate(['status'=>"required"]);
+            Order::where('id', $order->id)->update($data);
+            return redirect('/seller/orders')->with('success', 'Order has been rejected');
+        }
+        
         //Property::where('id', $property->id)->update($validatedData);
         // Order::where('id', $order->id)->update->($order);
     }

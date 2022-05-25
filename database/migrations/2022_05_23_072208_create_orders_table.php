@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('seller_id');
             $table->foreignId('buyer_id');
             $table->foreignId('property_id');
+            $table->string('seller_name');
+            $table->string('buyer_name');
+            $table->string('property_name');
             $table->date('date_order');
             $table->date('check_in');
             $table->date('check_out');

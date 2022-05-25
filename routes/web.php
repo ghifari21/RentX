@@ -25,8 +25,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // NEED TO FIX THESE ROUTES LATER
 Route::get('/', [PageController::class, 'index']);
 
+# routing untuk nampilin property secara umum
 Route::get('/search', [PageController::class, 'search']);
 
+#routing untuk detail property
 Route::get('/property/{property:slug}', [PageController::class, 'show']);
 
 # routing untuk halaman login
@@ -80,7 +82,9 @@ Route::get('/buyers/verification', function () {
     ]);
 });
 
+#routing landing page/dashboard buyer
 Route::get('/dashboard', [DashboardBuyerController::class, 'index']);
+
 
 # routing untuk review/comment
 Route::post('/buyers/review',[ReviewController::class,'store'])->name('add.comment');
@@ -101,6 +105,14 @@ Route::get('/seller/dashboard/{property:slug}/edit', [DashboardSellerController:
 Route::put('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'update'])->middleware('seller');
 
 Route::delete('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'destroy'])->middleware('seller');
+
+#seller order action
+Route::post('/seller/orders/{order:id}', [DashboardSellerController::class, 'orderAction'])->middleware('seller');
+
+# permintaan sewa
+Route::get('/seller/orders',[DashboardSellerController::class, 'showOrder'])->middleware('seller');
+
+# riwayat transaksi
 
 // Route::get('sellers/profile', function () {
 //     return view('sellers.profile', [
