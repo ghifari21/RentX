@@ -11,7 +11,7 @@
                 <p class="">{{ auth()->user()->email }}</p>
             </div>
             <div class="row-1">
-                <a href="#"><button class="btn btn-outline-primary">Edit Profile</button></a>
+                <a href="/sellers/editProfile"><button class="btn btn-outline-primary">Edit Profile</button></a>
             </div>
         </div>
     </div>
