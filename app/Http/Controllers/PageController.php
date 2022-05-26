@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Order;
 use App\Models\Property;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {

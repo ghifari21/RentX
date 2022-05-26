@@ -57,4 +57,21 @@ class OrderController extends Controller
         return redirect('/dashboard')->with('success', 'Order has been sent,wait seller confirmation!');
 
     }
+
+    public function payment(Order $order) {
+        return view('buyers.bayar', [
+            'title' => "Pembayaran",
+            'order' => $order
+        ]);
+    }
+
+    public function paymentAccepted(Request $request, Order $order) {
+        $validatedData = $request->validate([
+            'status' => 'required'
+        ]);
+
+        Order::where('id', $order->id)->update($validatedData);
+
+        return redirect('/dashboard')->with('success', 'Payment has been successfully made!');
+    }
 }

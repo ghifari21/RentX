@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Buyer;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardBuyerController extends Controller
@@ -73,5 +75,34 @@ class DashboardBuyerController extends Controller
             'optionName' => 'Verifikasi Akun',
             'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
         ]);
+    }
+
+    public function viewChangePassword() {
+        return view('buyers.changePassword', [
+            'title' => 'Ganti Password'
+        ]);
+    }
+
+    public function changePassword(Request $request, User $user) {
+        $credentials = $request->validate([
+            'username' => 'required',
+        ]);
+
+        $credentials['password'] = $request->old_password;
+
+        if (Auth::attempt($credentials)) {
+            $new_password = $request->validate([
+                'password' => 'required|min:8'
+            ]);
+            if ($new_password['password'] != $credentials['password']) {
+                $request->validate([
+                    're_password' => 'required|same:password'
+                ]);
+                $new_password['password'] = Hash::make($new_password['password']);
+                dd($new_password['password']);
+                User::where('id', auth()->user()->id)->update($new_password);
+            }
+        }
+        return back()->with('error', 'There is an error!');
     }
 }

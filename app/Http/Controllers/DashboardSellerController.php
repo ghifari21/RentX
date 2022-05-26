@@ -136,23 +136,23 @@ class DashboardSellerController extends Controller
         //$order->status="accepted";
         //dd("tes");
         if($request->input('status')=='accepted'){
-            
+
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
-            
+
             //update is_availabe di tabel property
             $order->property->is_available = 0;
             $order->save();
-            
+
             return redirect('/seller/orders')->with('success', 'Order has been accepted');
-    
+
         }else if($request->input('status')=='rejected'){
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
 
             return redirect('/seller/orders')->with('success', 'Order has been rejected');
         }
-        
+
         //Property::where('id', $property->id)->update($validatedData);
         // Order::where('id', $order->id)->update->($order);
     }
@@ -224,7 +224,7 @@ class DashboardSellerController extends Controller
 
         Property::where('id', $property->id)->update($validatedData);
 
-        return redirect('/seller/dashboard/')->with('success', 'Property has been added!');
+        return redirect('/seller/dashboard/')->with('success', 'Property has been updated!');
     }
 
     /**
