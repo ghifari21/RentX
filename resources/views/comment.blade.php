@@ -11,10 +11,12 @@
         @csrf
         <div class="login-bg">
             <label for="comment" class="form-label">Komentar</label>
-            <textarea class="form-control" name="comment" id="comment" placeholder="Tulis komentar anda"></textarea>
+            <textarea class="form-control" name="comment" id="comment"
+                placeholder="Tulis komentar anda">{{old('comment')}}</textarea>
             <br>
             <label for="rating" class="form-label">Rating</label>
             <select name="rating" id="star-rating">
+                {{old('rating')}}
                 <option value="5">5</option>
                 <option value="4">4</option>
                 <option value="3">3</option>
