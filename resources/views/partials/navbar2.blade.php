@@ -13,8 +13,15 @@
 					<a class="nav-link text-dark" href="#">Link</a>
 				</li>
 			</ul>
+            @auth
+            <form action="/logout" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+            </form>
+            @else
 			<a href="/login"><button type="button" class="btn btn-info me-3">Login</button></a>
 			<a href="/register"><button type="button" class="btn btn-outline-light">Register</button></a>
+            @endauth
 		</div>
     </div>
 </nav>
