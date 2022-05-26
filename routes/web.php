@@ -43,6 +43,10 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::get('/payment/{order:id}', [OrderController::class, 'payment']);
+
+Route::put('/payment/{order:id}', [OrderController::class, 'paymentAccepted']);
+
 # routing untuk halaman buyer History
 Route::get('/buyers/history', function () {
     return view('buyers.history', [
@@ -58,14 +62,6 @@ Route::get('/buyers/history', function () {
 });
 
 # routing untuk halaman buyer Verification
-// Route::get('/buyers/verification', function () {
-//     return view('buyers.verification', [
-//         'title' => 'Verifikasi Akun',
-//         'name' => 'Johnny Sins',
-//         'email' => 'mail@email.com',
-//         'optionName' => 'Verifikasi Akun'
-//     ]);
-// });
 
 //BUYER
 #routing landing page/dashboard buyer
@@ -76,6 +72,10 @@ Route::get('/dashboard/{user:username}/edit', [DashboardBuyerController::class, 
 Route::put('/dashboard/{user:username}', [DashboardBuyerController::class, 'update']);
 
 Route::get('/dashboard/verification', [DashboardBuyerController::class, 'verification']);
+
+Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'viewChangePassword']);
+
+Route::put('/dashboard/change-password/{user:username}', [DashboardBuyerController::class, 'changePassword']);
 
 # routing untuk halaman buyer Riview/Komentar
 Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);
@@ -89,15 +89,15 @@ Route::post('/buyers/order/{property:slug}', [OrderController::class,'store']);
 # routing untuk halaman Dashboard Seller
 Route::get('/seller/dashboard', [DashboardSellerController::class, 'index'])->middleware('seller');
 
-Route::get('/seller/dashboard/{user:username}/edit', [DashboardSellerController::class, 'editProfile'])->middleware('seller');
-
-Route::put('/seller/dashboard/{user:username}', [DashboardSellerController::class, 'updateProfile'])->middleware('seller');
-
-Route::get('/seller/dashboard/create', [DashboardSellerController::class, 'create'])->middleware('seller');
-
 Route::post('/seller/dashboard', [DashboardSellerController::class, 'store'])->middleware('seller');
 
 Route::get('/seller/dashboard/{property:slug}/edit', [DashboardSellerController::class, 'edit'])->middleware('seller');
+
+Route::get('/seller/dashboard/profile/{user:username}/edit', [DashboardSellerController::class, 'editProfile'])->middleware('seller');
+
+Route::put('/seller/dashboard/profile/{user:username}', [DashboardSellerController::class, 'updateProfile'])->middleware('seller');
+
+Route::get('/seller/dashboard/create', [DashboardSellerController::class, 'create'])->middleware('seller');
 
 Route::put('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'update'])->middleware('seller');
 
@@ -112,20 +112,6 @@ Route::post('/seller/orders/{order:id}', [DashboardSellerController::class, 'ord
 Route::get('/seller/orders',[DashboardSellerController::class, 'showOrder'])->middleware('seller');
 
 # riwayat transaksi
-
-
-
-# routing untuk halaman seller Profile
-// Route::get('/sellers/history', function () {
-//     return view('sellers.history', [
-//         'title' => 'Riwayat Transaksi',
-//         'name' => 'Fukada Eimi',
-//         'email' => 'mail@email.com',
-//         'optionName' => 'Riwayat Transaksi',
-//         'propertyName' => 'Kosan Brothel Gerlong Triple X',
-//         'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
-//     ]);
-// });
 
 Route::get('/admin', function () {
     return view('admin.dashboard', [
