@@ -26,7 +26,11 @@
                             </div>
                             <div class="row invisible"><p>Invisible</p></div>
                             <div class="row">
-                                <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
+                                @if ($order->status == "accepted")
+                                    <a class="btn btn-success mb-0" href="/payment/{{ $order->id }}">Bayar</a>
+                                @else
+                                    <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
+                                @endif
                             </div>
                         </div>
                     </div>

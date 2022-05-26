@@ -5,7 +5,7 @@
 
 <!-- container section -->
 <div class="container">
-    <form method="post" action="/seller/dashboard/{{ auth()->user()->username }}" enctype="multipart/form-data">
+    <form method="post" action="/seller/dashboard/profle/{{ auth()->user()->username }}" enctype="multipart/form-data">
         @method('put')
         @csrf
         <div style="padding-left: 10rem; padding-right: 10rem;">

@@ -14,6 +14,11 @@
     <!-- header section -->
     @include('partials.navbar')
 
+    @if (session()->has('success'))
+    <div class="alert alert-success col-lg-8">
+        {{ session('success') }}
+    </div>
+    @endif
     <!-- container section -->
     <div class="container px-5 mb-5">
         @yield('main-content')

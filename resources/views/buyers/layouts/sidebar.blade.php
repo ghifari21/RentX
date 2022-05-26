@@ -33,10 +33,10 @@
     </div>
     <div class="row mb-3 border-bottom border-secondary">
         <div class="col-1">
-            <i class="fa fa-user-check"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
         </div>
         <div class="col">
-            <a href="/dashboard/verification" class="text-black" style="text-decoration: none;"><p>Verifikasi Akun</p></a>
+            <a href="/dashboard/change-password" class="text-black" style="text-decoration: none;"><p>Change Password</p></a>
         </div>
     </div>
 </div>
