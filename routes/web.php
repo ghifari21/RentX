@@ -67,6 +67,7 @@ Route::get('/buyers/history', function () {
 //     ]);
 // });
 
+//BUYER
 #routing landing page/dashboard buyer
 Route::get('/dashboard', [DashboardBuyerController::class, 'index']);
 
@@ -76,13 +77,15 @@ Route::put('/dashboard/{user:username}', [DashboardBuyerController::class, 'upda
 
 Route::get('/dashboard/verification', [DashboardBuyerController::class, 'verification']);
 
-# routing untuk review/comment
-Route::post('/buyers/review',[ReviewController::class,'store'])->name('add.comment');
+# routing untuk halaman buyer Riview/Komentar
+Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);
+
+Route::post('/buyers/review/{property:slug}',[ReviewController::class,'store']);
 
 # routing untuk order
 Route::post('/buyers/order/{property:slug}', [OrderController::class,'store']);
 
-
+// SELLER
 # routing untuk halaman Dashboard Seller
 Route::get('/seller/dashboard', [DashboardSellerController::class, 'index'])->middleware('seller');
 

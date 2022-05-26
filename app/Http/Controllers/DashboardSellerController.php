@@ -98,7 +98,7 @@ class DashboardSellerController extends Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function showOrder(Property $property,Order $order)
+    public function showOrder()
     {
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
@@ -115,7 +115,7 @@ class DashboardSellerController extends Controller
         ]);
     }
 
-    public function showTransaction(Property $property,Order $order)
+    public function showTransaction()
     {
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
@@ -136,21 +136,27 @@ class DashboardSellerController extends Controller
         //$order->status="accepted";
         //dd("tes");
         if($request->input('status')=='accepted'){
+            
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
-            //ganti is availabe
-
+            
+            //update is_availabe di tabel property
+            $order->property->is_available = 0;
+            $order->save();
+            
             return redirect('/seller/orders')->with('success', 'Order has been accepted');
-
+    
         }else if($request->input('status')=='rejected'){
             $data = $request->validate(['status'=>"required"]);
             Order::where('id', $order->id)->update($data);
+
             return redirect('/seller/orders')->with('success', 'Order has been rejected');
         }
-
+        
         //Property::where('id', $property->id)->update($validatedData);
         // Order::where('id', $order->id)->update->($order);
     }
+
 
     /**
      * Show the form for editing the specified resource.

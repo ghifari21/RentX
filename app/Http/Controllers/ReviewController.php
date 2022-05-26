@@ -11,38 +11,49 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function index(){
+    public function index(Property $property){
+        $count_1 = Order::where([['property_id','=',$property->id],['buyer_id','=',auth()->user()->id],['status','=','accepted']])->count();
+        $count_2 = Review::where([['property_id','=',$property->id],['buyer_id','=',auth()->user()->id]])->count();
 
+        //dd($count_1,$count_2);
+        if($count_1>0 && $count_2==0){
+            return view('comment',[
+                'title' => "Update",
+                'property' => $property
+            ]);
+        }else if($count_1==0 || $count_2!=0){
+            //error message
+            return "error";
+        }        
     }
 
-    public function store(Request $request){
+    public function store(Request $request,Property $property){
         //validate data
         $validatedData = $request->validate([
             'comment'=>'required|max:500',
             'rating'=>'required',
         ]);
-
-        //check status buyer (di viewnya nya jga hrs di implementasi)
-        $status = Order::where([["buyer_id",'=',auth()->user()->id],["status",'=',"accepted"]]);
+        //gk perlu order id
+        $validatedData['order_id']=1;
+        $validatedData['buyer_id']=auth()->user()->id;
+        $validatedData['property_id']=$property->id;
         
-        $property = Property::firstWhere('user_id', auth()->user()->id);
-
-        $old_total_review=0;
+        $old_total_reviewer=$property->total_reviewer;
         //kali rating dan total_review di tabel property
-        $old_rating_property=0;
-        //tambahin trs bagi
-        $new_rating_property=($old_rating_property+$validatedData['rating'])/($old_total_review+1);
-
-        //add 1 ke atribut total_review di tabel property
-
-        //masukin new_rating_property ke kolom rating di tabel properti
-
+        $old_rating_property=($property->rating)*$old_total_reviewer;
+        //new daftar
+        $new_rating_property=($old_rating_property+$validatedData['rating'])/($old_total_reviewer+1);
+        $new_total_reviewer=$property->total_reviewer+1;
+        //dd($old_total_reviewer,$old_rating_property,$new_rating_property,$new_total_reviewer);
+        //masukin ke tabel property
+        $property->total_reviewer=$new_total_reviewer;
+        $property->rating=$new_rating_property;
+        //save tabel property
+        $property->save();
+        
         //create
         Review::create($validatedData);
 
-
         return redirect('/dashboard')->with('success', 'Order has been sent,wait seller confirmation!');
-
-
     }
 }
