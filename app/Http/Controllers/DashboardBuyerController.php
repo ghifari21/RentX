@@ -100,7 +100,7 @@ class DashboardBuyerController extends Controller
                 ]);
                 $new_password['password'] = Hash::make($new_password['password']);
                 dd($new_password['password']);
-                User::where('id', auth()->user()->id)->update($new_password);
+            User::where('id', auth()->user()->id)->update($new_password);
             }
         }
         return back()->with('error', 'There is an error!');
