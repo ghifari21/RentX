@@ -8,10 +8,10 @@
 		<div class="landing-page-search">
 			<h4>Cari Kos / Kontrakan</h4>
 
-			<form action="/search" class="form-inline">
-				<input class="form-control mb-2 mr-sm-2" id="search-input" name="search" placeholder="Cari kos yang anda inginkan">
+			<div class="form-inline">
+				<input class="form-control mb-2 mr-sm-2" id="search-input" placeholder="Cari kos yang anda inginkan">
 				<button type="submit" class="btn btn-primary mb-2">Cari</button>
-			</form>
+			</div>
 		</div>
 
 		<div class="landing-page-recommendation">
@@ -56,51 +56,35 @@
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
 			</div>
-
 		</div>
+    
+    <br/>
 
-		<div class="landing-page-area">
-			<h2 class="mt-4 mb-2">Area Kos / Kontrakan Populer</h2>
-
-			<div class="center">
-            <div class="area-card">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn btn-primary">Lihat Lainnya</button>
+    <div class="row">
+			<h2 class="mt-2 mb-2">Area Kos / Kontrakan Populer</h2>
+      <div class="col-md">
+        <a href="" class="text-black" style="text-decoration: none;">
+          <img src="/img/bandung.jpg" alt="Bandung" class="rounded w-100">
+          <p class="text-center fw-bold fs-4">Bandung</p>
+        </a>
+      </div>
+      <div class="col-md">
+        <a href="" class="text-black" style="text-decoration: none;">
+          <img src="/img/jakarta.jpg" alt="Jakarta" class="rounded w-100">
+          <p class="text-center fw-bold fs-4">Jakarta</p>
+        </a>
+      </div>
+      <div class="col-md">
+        <a href="" class="text-black" style="text-decoration: none;">
+          <img src="/img/semarang.jpg" alt="Semarang" class="rounded w-100">
+          <p class="text-center fw-bold fs-4">Semarang</p>
+        </a>
+      </div>
+      <div class="col-md">
+        <a href="" class="text-black" style="text-decoration: none;">
+          <img src="/img/surabaya.jpg" alt="Surabaya" class="rounded w-100">
+          <p class="text-center fw-bold fs-4">Surabaya</p>
+        </a>
       </div>
     </div>
 	</div>
