@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('seller_id');
-            $table->foreignId('buyer_id');
-            $table->foreignId('property_id');
+            $table->foreignId('seller_id')->constrained('sellers')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('buyer_id')->constrained('buyers')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreignId('property_id')->constrained('properties')->onUpdate('cascade')->onDelete('restrict');
             // $table->string('seller_name');
             // $table->string('buyer_name');
             // $table->string('property_name');

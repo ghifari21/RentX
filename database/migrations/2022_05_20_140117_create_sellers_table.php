@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nik')->unique();
             $table->text('address');
             $table->string('photo_profile')->nullable();
+            $table->string('photo_ktp');
+            $table->string('photo_selfie');
+            $table->string('status');
             $table->string('phone')->unique();
             $table->timestamps();
         });

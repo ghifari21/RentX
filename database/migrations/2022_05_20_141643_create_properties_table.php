@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('seller_id');
+            $table->foreignId('seller_id')->constrained('sellers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('property_type');
-            $table->boolean('is_available')->default(true);
+            // $table->boolean('is_available')->default(true);
             $table->string('rent_for');
             $table->integer('total_room');
             $table->integer('available_room');

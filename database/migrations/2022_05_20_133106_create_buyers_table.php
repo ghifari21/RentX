@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('phone')->unique()->nullable();
-            $table->string('nik')->unique()->nullable();
             $table->string('photo_profile')->nullable();
             $table->timestamps();
         });
