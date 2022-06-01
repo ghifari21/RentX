@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardBuyerController;
 use App\Http\Controllers\DashboardSellerController;
 use App\Http\Controllers\LoginController;
@@ -71,11 +72,13 @@ Route::get('/dashboard/{user:username}/edit', [DashboardBuyerController::class, 
 
 Route::put('/dashboard/{user:username}', [DashboardBuyerController::class, 'update']);
 
-Route::get('/dashboard/verification', [DashboardBuyerController::class, 'verification']);
-
 Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'viewChangePassword']);
 
 Route::put('/dashboard/change-password/{user:username}', [DashboardBuyerController::class, 'changePassword']);
+
+Route::get('/dashboard/become-seller', [DashboardBuyerController::class, 'becomeSeller']);
+
+Route::post('/dashboard/become-seller', [DashboardBuyerController::class, 'requestToAdmin']);
 
 # routing untuk halaman buyer Riview/Komentar
 Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);#untuk di halaman detail property
@@ -147,3 +150,11 @@ Route::get('/admin/daftarBuyer', function () {
         'adminName' => 'Axel Eldrian'
     ]);
 });
+
+Route::get('/admin/requestUpgrade', [DashboardAdminController::class, 'requestUpgrade']);
+
+Route::get('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'showRequest']);
+
+Route::put('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'acceptRequest']);
+
+Route::delete('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'rejectRequest']);
