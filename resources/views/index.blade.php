@@ -21,34 +21,34 @@
 			<div class="swiper">
 				<!-- Additional required wrapper -->
 				<div class="swiper-wrapper">
-                    <!-- Slides -->
-                    {{-- slide 1 --}}
-                    <div class="swiper-slide">
-                        @foreach ($properties->take(5) as $property)
-                        <div class="card">
-                            <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
-                            <div class="card-body">
-                              <p class="card-text">{{ $property->title }}</p>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
+          <!-- Slides -->
+          {{-- slide 1 --}}
+          <div class="swiper-slide">
+              @foreach ($properties->take(5) as $property)
+              <div class="card">
+                  <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House" style="width: 100%;">
+                  <div class="card-body">
+                    <p class="card-text">{{ $property->title }}</p>
+                  </div>
+              </div>
+              @endforeach
+          </div>
 
-                    {{-- slide 2 --}}
-                    <div class="swiper-slide">
-                        @foreach ($properties->skip(5) as $property)
-                        <div class="card">
-                            <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
-                            <div class="card-body">
-                              <p class="card-text">{{ $property->title }}</p>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
+          {{-- slide 2 --}}
+          <div class="swiper-slide">
+              @foreach ($properties->skip(5) as $property)
+              <div class="card">
+                  <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
+                  <div class="card-body">
+                    <p class="card-text">{{ $property->title }}</p>
+                  </div>
+              </div>
+              @endforeach
+          </div>
 
-                    {{-- slide 3 --}}
-                    {{-- <div class="swiper-slide">Slide 3</div> --}}
-                </div>
+          {{-- slide 3 --}}
+          {{-- <div class="swiper-slide">Slide 3</div> --}}
+        </div>
 				<!-- If we need pagination -->
 				<div class="swiper-pagination"></div>
 

@@ -9,72 +9,48 @@
             <p class="detail-product-title">{{ $property->title }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <p class="text-larger">Lokasi</p> <!-- Need to change this later -->
-                <div>
-                    <button class="btn"><i class="fa-regular fa-heart"></i> Simpan</button>
-                    <button class="btn btn-icon"><span class="iconify iconify-share" data-icon="ei:share-google"></span>
-                        Bagikan</button>
-                </div>
-
             </div>
         </div>
-
         <div class="col-md"></div>
     </div>
 
     <div class="row mt-2">
-        <!-- Container for the image gallery -->
-        <div class="gallery-container col-md">
-
-            <!-- Full-width images with number text -->
-            <div class="mySlides">
-                <img src="{{ $property->photo_1 }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img src="{{ $property->photo_2 }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img src="{{ $property->photo_3 }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img src="{{ $property->photo_4 }}" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <img src="{{ $property->photo_5 }}" style="width:100%">
-            </div>
-
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <!-- Thumbnail images -->
-            <div class="row mt-2 justify-content-center">
-                <div class="column">
-                    <img class="demo cursor" src="{{ $property->photo_1 }}" style="width:100%" onclick="currentSlide(1)"
-                        alt="">
+        <div class="col-md">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                 </div>
-                <div class="column">
-                    <img class="demo cursor" src="{{ $property->photo_2 }}" style="width:100%" onclick="currentSlide(2)"
-                        alt="">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ $property->photo_1 }}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ $property->photo_2 }}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ $property->photo_3 }}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ $property->photo_4 }}" class="d-block w-100">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ $property->photo_5 }}" class="d-block w-100">
+                    </div>
                 </div>
-                <div class="column">
-                    <img class="demo cursor" src="{{ $property->photo_3 }}" style="width:100%" onclick="currentSlide(3)"
-                        alt="">
-                </div>
-                <div class="column">
-                    <img class="demo cursor" src="{{ $property->photo_4 }}" style="width:100%" onclick="currentSlide(4)"
-                        alt="">
-                </div>
-                <div class="column">
-                    <img class="demo cursor" src="{{ $property->photo_5 }}" style="width:100%" onclick="currentSlide(5)"
-                        alt="">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-
         <div class="col-md">
             <div class="container detail-container mb-3">
                 <p class="text-larger">Rp {{ $property->price }} / Bulan</p>
@@ -107,7 +83,7 @@
                             <p class="text-larger text-bolder">Rp XXX.XXX.XXX</p>
                         </div> -->
 
-                    <div class="d-flex justify-conten btn-success mt-2t-between">
+                    <div class="d-flex justify-conten btn-success mb-2">
                         <label class="text-larger" for="total_payment">Bayar</label>
                         <input type="number" class="form-control" name="total_payment" id="total_payment">
                     </div>
@@ -129,34 +105,22 @@
                     </div>
                 </div>
 
-                <a href=""><button class="btn btn-full-width mt-2">Hubungi Pemilik</button></a>
+                <a href=""><button class="btn btn-full-width btn-outline-primary mt-2">Hubungi Pemilik</button></a>
             </div>
         </div>
     </div>
 
     <div class="row mt-4">
-        <div class="container detail-container">
-            <p class="text-larger">Fasilitas yang Didapatkan</p>
-            <ul>
-                <li>List</li>
-                <li>Fasilitas</li>
-                <li>yang</li>
-                <li>didapatkan</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="container detail-container">
-            <p class="text-larger">Deskripsi</p>
+        <h2>Deskripsi</h2>
+        <div class="container detail-container border border-secondary rounded p-2">
             {!! $property->description !!}
         </div>
     </div>
 
+    <!-- ========= BAGIAN LOKASI ========= -->
     <div class="row mt-4">
-        <div class="container detail-container">
-            <p class="text-larger">Lokasi Kos/Kontrakan</p>
-
+        <h2>Lokasi Kos/Kontrakan</h2>
+        <div class="container detail-container border border-secondary rounded p-2">
             <div class="row">
                 <div class="col-md">
                     <p>
@@ -172,118 +136,118 @@
         </div>
     </div>
 
+    <!-- ========= BAGIAN REVIEW ========= -->
     <div class="row mt-4">
-        <div class="container detail-container">
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="text-larger">Review</p>
-                <a href="/buyers/review/{{$property->slug}}">
-                    <button type="submit" class="btn btn-wide">Tambahkan Ulasan</button>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2>Review</h2>
+            <a href="/buyers/review/{{$property->slug}}">
+                <button type="submit" class="btn btn-wide btn-success">Tambahkan Ulasan</button>
+            </a>
+        </div>
+        <div class="container detail-container border border-secondary rounded p-3">
+
+            <div class="review row border rounded  p-2 mb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
+                    <div class="container">
+                        <p class="mb-auto">Nama</p>
+                        <p class="mb-auto">DD/MM/YYY</p>
+                    </div>
+                </div>
+
+                <div class="col-md-8 review-border">
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star"></span>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
+                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
+                        natus inventore illo.</p>
+                </div>
+            </div>
+
+            <div class="review row border rounded p-2 mb-2">
+                <div class="col-md-4 d-flex align-items-center">
+                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
+                    <div class="container">
+                        <p class="mb-auto">Nama</p>
+                        <p class="mb-auto">DD/MM/YYY</p>
+                    </div>
+                </div>
+
+                <div class="col-md-8 review-border">
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star"></span>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
+                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
+                        natus inventore illo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="row">
+            <div class="col-8">
+                <h2 class="mb-3">Rekomendasi Kos / Kontrakan</h3>
+            </div>
+            <div class="col text-end">
+                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-
-            <div class="review row">
-                <div class="col-md-4 d-flex align-items-center">
-                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
-                    <div class="container">
-                        <p class="mb-auto">Nama</p>
-                        <p class="mb-auto">DD/MM/YYY</p>
+        </div>
+        <div class="row">
+            <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row d-flex justify-content-evenly">
+                            @foreach ($properties->take(5) as $p)
+                            <div class="col-md-2 mb-3">
+                                <div class="card">
+                                    <img src="{{ $p->photo_1 }}" class="img-fluid" alt="House">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $p->title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row d-flex justify-content-evenly">
+                            @foreach ($properties->skip(5) as $p)
+                            <div class="col-md-2 mb-3">
+                                <div class="card">
+                                    <img src="{{ $p->photo_1 }}" class="img-fluid" alt="House">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $p->title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-8 review-border">
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star"></span>
-
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
-                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
-                        natus inventore illo.</p>
-                </div>
-            </div>
-
-            <div class="review-likes row mb-3">
-                <i class="fa-solid fa-thumbs-up" id="like"></i>
-            </div>
-
-            <div class="review row">
-                <div class="col-md-4 d-flex align-items-center">
-                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
-                    <div class="container">
-                        <p class="mb-auto">Nama</p>
-                        <p class="mb-auto">DD/MM/YYY</p>
-                    </div>
-                </div>
-
-                <div class="col-md-8 review-border">
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star"></span>
-
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
-                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
-                        natus inventore illo.</p>
-                </div>
-            </div>
-
-            <div class="review-likes row mb-3">
-                <i class="fa-solid fa-thumbs-up" id="like"></i>
             </div>
         </div>
     </div>
-
-    <div class="row mt-4 landing-page-recommendation">
-        <h2 class="mb-2">Rekomendasi Kos / Kontrakan</h2>
-
-        <!-- Slider main container -->
-        <div class="swiper">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                {{-- slide 1 --}}
-                <div class="swiper-slide">
-                    @foreach ($properties->take(5) as $p)
-                    <div class="card">
-                        <img src="{{ $p->photo_1 }}" class="card-img-top" alt="House">
-                        <div class="card-body">
-                            <p class="card-text">{{ $p->title }}</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-
-                {{-- slide 2 --}}
-                <div class="swiper-slide">
-                    @foreach ($properties->skip(5) as $p)
-                    <div class="card">
-                        <img src="{{ $p->photo_1 }}" class="card-img-top" alt="House">
-                        <div class="card-body">
-                            <p class="card-text">{{ $p->title }}</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-
-                {{-- slide 3 --}}
-                {{-- <div class="swiper-slide">Slide 3</div> --}}
-            </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
-
 </div>
 
-<script src="{{ asset('js2/slideshow-gallery.js') }}"></script>
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-<script src="{{ asset('js/swiper.js') }}"></script>
+
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>     
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <!-- footer section  -->
 @include('partials.footer2')
