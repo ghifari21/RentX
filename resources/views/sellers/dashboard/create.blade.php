@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- navbar section -->
-    @include('partials.navbar')
+    @include('partials.navbar2')
 
     <div class="container px-5 mb-5">
         <h4 class="fw-bold">Tambah Kos / Kontrakan</h4>
