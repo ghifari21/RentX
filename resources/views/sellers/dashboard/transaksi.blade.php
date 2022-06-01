@@ -1,83 +1,56 @@
-@extends('admin.layouts.main')
+@extends('sellers.layouts.main')
 
-@section('main-content')
-@php
-$i = 1
-@endphp
-<div class="container p-3">
-    <span class="fs-4 fw-bold">Daftar Transaksi</span>
-    <hr>
-    <div class="border border-secondary rounded" style="overflow-y: auto; height: 80vh; overflow-x: auto;">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr style="background-color: #BFBFBF;">
-                        <th class="col">No</th>
-                        <th class="col">Nama Buyer</th>
-                        <th class="col">Properti</th>
-                        <th class="col">Tanggal Pemesanan</th>
-                        <th class="col">Tanggal Masuk</th>
-                        <th class="col">Tanggal Keluar</th>
-                        <th class="col">Durasi</th>
-                        <th class="col">Total Pembayaran</th>
-                        <th class="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                    <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$order->buyer->user->name}}</td>
-                        <td>{{$order->property->title}}</td>
-                        <td>{{$order->date_order}}</td>
-                        <td>{{$order->check_in}}</td>
-                        <td>{{$order->check_out}}</td>
-                        <td>{{$order->duration}} bulan</td>
-                        <td>{{$order->total_payment}}</td>
-                        <td>
+@section('container')
+<div class="row">
+    <!-- left side section -->
+    @include('sellers.layouts.sidebar')
+
+    <!-- right side section -->
+    <div class="col p-3">
+        <div class="row">
+            <h1 class="fs-3 fw-bold mb-3">{{ $optionName }}</h1>
+        </div>
+        <div class="border border-secondary rounded px-4 py-3" style="overflow-y: auto; height: 61vh">
+            @foreach ($orders as $order)
+                <div class="row border border-secondary rounded p-3 mb-3">
+                    <p>{{$order->date_order}}</p>
+                    <hr>
+                    <div class="col">
+                        <div class="row">
+                            <p class="fw-bold mb-0">{{ $order->property->title }}</p>
+                            <p class="">{{ $order->property->address }}</p>
+                        </div>
+                        <div class="row"><p class="mb-0">Pemesan: {{$order->buyer->user->name}}</p></div>
+                    </div>
+                    <div class="col text-end">
+                        <div class="row">
+                            <p class="fw-bold mb-0">Durasi: {{$order->duration}} bulan</p>
+                            <p class="">{{$order->check_in}} - {{$order->check_out}}</p>
+                        </div>
+                        <div class="row">
+                            <p class="">Total Payment: {{$order->total_payment}}</p>
                             <form action="/seller/orders/{{$order->id}}" method="post">
                                 @csrf
                                 <button class="btn btn-info" name="status" value="accepted">Diterima</button>
                                 <button class="btn btn-danger" name="status" value="rejected">Ditolak</button>
                             </form>
-                            {{-- <a href="/seller/orders/{{$order->id}}"><button class="btn btn-info" name="status"
-                                    value="accepted">Diterima</button></a>
-                            <a href="/seller/orders/{{$order->id}}"><button class="btn btn-danger" name="status"
-                                    value="rejected">Ditolak</button></a> --}}
-                            {{-- <option value="" disabled selected>Aksi</option>
-
-                            <option value="accepted">Diterima</option>
-                            <option value="rejected">Ditolak</option>
-                            --}}
-                            {{-- <input type="hidden" value="accepted" name="status"> --}}
-
-
-                            {{-- <input type="hidden" value="rejected" name="status"> --}}
-
-                            {{-- /seller/orders/{{$order->id}} --}}
-
-
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
 <script>
-    let oldConfirmationStatus;
-        $('#status').change(function() {
-            let newConfirmationStatus = $(this).val();
-            if(!confirm("Apakah anda yakin ingin mengubah status transaksi ini?")) {
-                $(this).val(oldConfirmationStatus);
-                return;
-            }
-            oldConfirmationStatus = newConfirmationStatus;
-        });
+let oldConfirmationStatus;
+    $('#status').change(function() {
+        let newConfirmationStatus = $(this).val();
+        if(!confirm("Apakah anda yakin ingin mengubah status transaksi ini?")) {
+            $(this).val(oldConfirmationStatus);
+            return;
+        }
+        oldConfirmationStatus = newConfirmationStatus;
+    });
 </script>
 @endsection
