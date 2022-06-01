@@ -194,6 +194,7 @@
                                     <img src="{{ $p->photo_1 }}" class="img-fluid" alt="House">
                                     <div class="card-body">
                                         <p class="card-text">{{ $p->title }}</p>
+                                        <p class="card-text">alamat</p>
                                         <span class="fa fa-star star-checked">{{$p->rating}}</span>
                                     </div>
                                 </div>

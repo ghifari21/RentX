@@ -3,10 +3,11 @@ fitur verifikasi upgrade buyer jdi seller(udah)
 review di detail properti belum jalan(udah)
 buat slug utk properti ,pas input lgsn generate slug
 check route
-rekomendasi di detail properti dan landing page
+rekomendasi di detail properti(udah) 
+rekomendasi di detail landing page(udah)
 filter di menu search 
 
 ----------
 hilman
-flash message di dashboard buyer gk ilang ilang
+flash message di dashboard buyer gk ilang ilang(udah)
 

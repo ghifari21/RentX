@@ -13,7 +13,7 @@ class PageController extends Controller
     public function index() {
         return view('index', [
             'title' => 'Home',
-            'properties' => Property::all()->sortBy("title")->take(10)
+            'properties' => Property::orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get()
         ]);
     }
 
@@ -28,7 +28,7 @@ class PageController extends Controller
         return view('property', [
             'title' => 'Detail Properti',
             'property' => $property,
-            'properties' => Property::orderBy("rating",'asc')->take(10)->get(),
+            'properties' => Property::orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
             'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
         ]);
     }
