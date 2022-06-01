@@ -8,10 +8,10 @@
 		<div class="landing-page-search">
 			<h4>Cari Kos / Kontrakan</h4>
 
-			<div class="form-inline">
-				<input class="form-control mb-2 mr-sm-2" id="search-input" placeholder="Cari kos yang anda inginkan">
+			<form action="/search" class="form-inline">
+				<input class="form-control mb-2 mr-sm-2" id="search-input" name="search" placeholder="Cari kos yang anda inginkan">
 				<button type="submit" class="btn btn-primary mb-2">Cari</button>
-			</div>
+			</form>
 		</div>
 
 		<div class="landing-page-recommendation">
@@ -57,7 +57,7 @@
 				<div class="swiper-button-next"></div>
 			</div>
 		</div>
-    
+
     <br/>
 
     <div class="row">

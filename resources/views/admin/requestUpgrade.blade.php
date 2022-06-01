@@ -8,6 +8,7 @@ $i = 1
     <span class="fs-4 fw-bold">Request Jadi Seller</span>
     <hr>
     <div class="border border-secondary rounded" style="overflow-y: auto; height: 80vh; overflow-x: auto;">
+        @if ($requests)
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -21,23 +22,22 @@ $i = 1
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($requests as $request)
                     <tr>
-                        <td>{{$i++}}</td>
-                        <td>Eimi</td>
-                        <td>eimin</td>
-                        <td>eimi@gmail.com</td>
-                        <td>Pending</td>
-                        <td>
-                            <form action="" method="post">
-                                @csrf
-                                <button class="btn btn-info" name="status" value="accepted">Diterima</button>
-                                <button class="btn btn-danger" name="status" value="rejected">Ditolak</button>
-                            </form>
-                        </td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $request->user->name }}</td>
+                        <td>{{ $request->user->username }}</td>
+                        <td>{{ $request->user->email }}</td>
+                        <td>{{ $request->status }}</td>
+                        <td><a class="btn btn-warning" href="/admin/requestUpgrade/{{ $request->user->username }}">Detail</a></td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
+        @else
+            <p class="text-center my-3 fs-5">No request found.</p>
+        @endif
     </div>
 </div>
 

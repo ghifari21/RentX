@@ -19,7 +19,9 @@
 				<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
 					<!-- disini pake if buyer atau seller bro -->
 					<li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-					<li><a class="dropdown-item" href="/seller/dashboard">Dashboard Seller</a></li>
+					@if (auth()->user()->account_type === 'seller')
+                        <li><a class="dropdown-item" href="/seller/dashboard">Dashboard Seller</a></li>
+                    @endif
 					<li>
 						<hr class="dropdown-divider">
 					</li>
