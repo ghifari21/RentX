@@ -35,17 +35,13 @@
                                     <p class="card-text card-content-detail-name">{{ $property->title }}</p>
                                     <p class="card-text card-content-detail-location">{{ $property->address }}</p>
                                 </div>
-                                <p class="mt-2">Fasilitas Unggulan</p>
-
                                 <div class="card-content-detail">
                                     <p class="card-text card-content-detail-name">Rp {{ $property->price }} / bulan</p>
                                 </div>
                             </div>
-        
                         </div>
                     </div>
                 </div>
-
             </div>
         </a>
         @endforeach
