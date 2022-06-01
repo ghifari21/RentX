@@ -39,4 +39,12 @@
             <a href="/dashboard/change-password" class="text-black" style="text-decoration: none;"><p>Change Password</p></a>
         </div>
     </div>
+    <div class="row mb-3 border-bottom border-secondary">
+        <div class="col-1">
+            <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div class="col">
+            <a href="/dashboard/upgradeToSeller" class="text-black" style="text-decoration: none;"><p>Upgrade ke Seller</p></a>
+        </div>
+    </div>
 </div>
