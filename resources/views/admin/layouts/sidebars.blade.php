@@ -8,9 +8,6 @@
             <a href="/admin" class="nav-link text-white">Home</a>
         </li>
         <li>
-            <a href="/admin/transaksi" class="nav-link text-white">Transaksi</a>
-        </li>
-        <li>
             <a href="/admin/daftarAdmin" class="nav-link text-white">Daftar Admin</a>
         </li>
         <li>
@@ -19,6 +16,9 @@
         <li>
             <a href="/admin/daftarBuyer" class="nav-link text-white">Daftar Buyer</a>
         </li>
+        </li>
+            <a href="/admin/requestUpgrade" class="nav-link text-white">Request Jadi Seller</a>
+        <li>
     </ul>
     <hr>
     <div class="dropdown">
@@ -27,16 +27,14 @@
             {{-- <strong>{{ $adminName }}</strong> --}}
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="/">Back to Home</a></li>
             <li>
                 <hr class="dropdown-divider">
             </li>
             <li>
                 <form action="/logout" method="post">
                     @csrf
-                    <a class="dropdown-item" href="/logout">Sign out</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
                 </form>
             </li>
         </ul>
