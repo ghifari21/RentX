@@ -19,7 +19,7 @@ class PageController extends Controller
     public function search() {
         return view('search', [
             'title' => 'Cari',
-            'properties' => Property::latest()->paginate(10)
+            'properties' => Property::latest()->filter(request(['search']))->paginate(10)
         ]);
     }
 

@@ -18,12 +18,6 @@ class DashboardBuyerController extends Controller
             'title' => 'Dashboard',
             'orders' => Order::where('buyer_id', $buyer->id)->get(),
             'optionName' => 'Kos Saya',
-            'name' => 'Johnny Sins',
-            'email' => 'mail@email.com',
-            'propertyName' => 'Kosan Brothel Gerlong Triple X',
-            'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069',
-            'propertyPrice' => 'Rp 1.000.000',
-            'duration' => '21/06/2022 - 32/13/2069',
             'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
         ]);
     }
@@ -35,7 +29,7 @@ class DashboardBuyerController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user, Buyer $buyer) {
+    public function update(Request $request, User $user) {
         $user_rules = [
             'name' => 'required',
             'email' => 'required',
@@ -99,8 +93,10 @@ class DashboardBuyerController extends Controller
                     're_password' => 'required|same:password'
                 ]);
                 $new_password['password'] = Hash::make($new_password['password']);
-                dd($new_password['password']);
-            User::where('id', auth()->user()->id)->update($new_password);
+                // dd($new_password['password']);
+                User::where('id', auth()->user()->id)->update($new_password);
+
+                return redirect('/dashboard')->with('success', 'Your password has been updated!');
             }
         }
         return back()->with('error', 'There is an error!');
