@@ -46,4 +46,12 @@
             </a>
         </div>
     </div>
+    <div class="row mb-3 border-bottom border-secondary">
+        <div class="col-1">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+        <div class="col">
+            <a href="/seller/dashboard/change-password" class="text-black" style="text-decoration: none;"><p>Change Password</p></a>
+        </div>
+    </div>
 </div>

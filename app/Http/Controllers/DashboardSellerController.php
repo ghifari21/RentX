@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Models\Seller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardSellerController extends Controller
@@ -296,6 +298,37 @@ class DashboardSellerController extends Controller
         Seller::where('user_id', $user->id)->update($validatedDataSeller);
 
         return redirect('seller/dashboard')->with('success', 'Your profile has been updated!');
+    }
+
+    public function viewChangePassword() {
+        return view('sellers.changePassword', [
+            'title' => 'Ganti Password'
+        ]);
+    }
+
+    public function changePassword(Request $request, User $user) {
+        $credentials = $request->validate([
+            'username' => 'required',
+        ]);
+
+        $credentials['password'] = $request->old_password;
+
+        if (Auth::attempt($credentials)) {
+            $new_password = $request->validate([
+                'password' => 'required|min:8'
+            ]);
+            if ($new_password['password'] != $credentials['password']) {
+                $request->validate([
+                    're_password' => 'required|same:password'
+                ]);
+                $new_password['password'] = Hash::make($new_password['password']);
+                // dd($new_password['password']);
+                User::where('id', auth()->user()->id)->update($new_password);
+
+                return redirect('/seller/dashboard')->with('success', 'Your password has been updated!');
+            }
+        }
+        return back()->with('error', 'There is an error!');
     }
 
     public function history() {

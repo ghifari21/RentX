@@ -107,6 +107,10 @@ Route::delete('/seller/dashboard/{property:slug}', [DashboardSellerController::c
 
 Route::get('/seller/dashboard/history', [DashboardSellerController::class, 'history'])->middleware('seller');
 
+Route::get('/seller/dashboard/change-password', [DashboardSellerController::class, 'viewChangePassword'])->middleware('seller');
+
+Route::put('/seller/dashboard/change-password/{user:username}', [DashboardSellerController::class, 'changePassword'])->middleware('seller');
+
 #seller order action
 Route::post('/seller/orders/{order:id}', [DashboardSellerController::class, 'orderAction'])->middleware('seller');
 
