@@ -28,7 +28,7 @@ class PageController extends Controller
         return view('property', [
             'title' => 'Detail Properti',
             'property' => $property,
-            'properties' => Property::all()->sortBy("title")->take(10),
+            'properties' => Property::orderBy("rating",'asc')->take(10)->get(),
             'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
         ]);
     }
