@@ -81,7 +81,8 @@ class ReviewController extends Controller
         ]);
     }
 
-    public function showReview(Review $review){
-        
+    public function update(Request $request, $id){
+        $review = Review::find($id)->update($request->all());
+        return back()->with('success',' Data telah diperbaharui!');
     }
 }
