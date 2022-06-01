@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Buyer;
 use App\Models\Order;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,10 +15,12 @@ class DashboardBuyerController extends Controller
 {
     public function index() {
         $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
         return view('buyers.index', [
             'title' => 'Dashboard',
             'orders' => Order::where('buyer_id', $buyer->id)->get(),
             'optionName' => 'Kos Saya',
+            'seller' => $seller,
             'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
         ]);
     }
@@ -63,14 +66,6 @@ class DashboardBuyerController extends Controller
         return redirect('/dashboard')->with('success', 'Your profile has been updated!');
     }
 
-    public function verification() {
-        return view('buyers.verification', [
-            'title' => 'Verifikasi Akun',
-            'optionName' => 'Verifikasi Akun',
-            'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
-        ]);
-    }
-
     public function viewChangePassword() {
         return view('buyers.changePassword', [
             'title' => 'Ganti Password'
@@ -100,5 +95,33 @@ class DashboardBuyerController extends Controller
             }
         }
         return back()->with('error', 'There is an error!');
+    }
+
+    public function becomeSeller() {
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        return view('buyers.upgradeToSeller', [
+            'optionName' => 'Jadi Seller',
+            'title' => 'Jadi Seller',
+            'seller' => $seller,
+            'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
+        ]);
+    }
+
+    public function requestToAdmin(Request $request) {
+        $validatedData = $request->validate([
+            'nik' => 'required|size:16|unique:sellers',
+            'address' => 'required',
+            'phone' => 'required|unique:sellers',
+            'photo_ktp' => 'required|image|file|max:5120',
+            'photo_selfie' => 'required|image|file|max:5120',
+            'user_id' => 'required'
+        ]);
+
+        $validatedData['photo_ktp'] = $request->file('photo_ktp')->store('ktps');
+        $validatedData['photo_selfie'] = $request->file('photo_selfie')->store('selfies');
+
+        Seller::create($validatedData);
+
+        return redirect('/dashboard')->with('success', 'Your request has been sent.');
     }
 }
