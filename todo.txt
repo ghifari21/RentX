@@ -1,0 +1,12 @@
+nambah tombol review di dashboard buyer(udah)
+fitur verifikasi upgrade buyer jdi seller(udah)
+review di detail properti belum jalan(udah)
+buat slug utk properti ,pas input lgsn generate slug
+check route
+rekomendasi di detail properti dan landing page
+filter di menu search 
+
+----------
+hilman
+flash message di dashboard buyer gk ilang ilang
+

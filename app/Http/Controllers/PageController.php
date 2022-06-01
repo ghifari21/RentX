@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class PageController extends Controller
         return view('property', [
             'title' => 'Detail Properti',
             'property' => $property,
-            'properties' => Property::all()->sortBy("title")->take(10)
+            'properties' => Property::all()->sortBy("title")->take(10),
+            'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
         ]);
     }
+
 }

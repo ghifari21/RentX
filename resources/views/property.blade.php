@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <p class="detail-product-title">{{ $property->title }}</p>
+            <p class="detail-product-title fw-bold fs-4">{{ $property->title }}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <p class="text-larger">Lokasi</p> <!-- Need to change this later -->
             </div>
@@ -18,11 +18,16 @@
         <div class="col-md">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -41,11 +46,13 @@
                         <img src="{{ $property->photo_5 }}" class="d-block w-100">
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -101,11 +108,8 @@
                     <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
                     <div class="container">
                         <p class="text-larger mb-auto">Nama btn-info emilik</p>
-                        <p class="text-larger mb-auto">Status (Online / Terakhir Online)</p>
                     </div>
                 </div>
-
-                <a href=""><button class="btn btn-full-width btn-outline-primary mt-2">Hubungi Pemilik</button></a>
             </div>
         </div>
     </div>
@@ -144,51 +148,24 @@
                 <button type="submit" class="btn btn-wide btn-success">Tambahkan Ulasan</button>
             </a>
         </div>
-        <div class="container detail-container border border-secondary rounded p-3">
-
+        <div class="container detail-container border border-secondary rounded p-3"
+            style="overflow-y: auto; height: 41vh">
+            @foreach($reviews as $review)
             <div class="review row border rounded  p-2 mb-2">
                 <div class="col-md-4 d-flex align-items-center">
                     <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
                     <div class="container">
-                        <p class="mb-auto">Nama</p>
-                        <p class="mb-auto">DD/MM/YYY</p>
+                        <p class="mb-auto">{{$review->buyer->user->name}}</p>
+                        <p class="mb-auto">{{$review->updated_at->diffForHumans()}}</p>
                     </div>
                 </div>
-
                 <div class="col-md-8 review-border">
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star"></span>
+                    @for ($i = 0; $i < $review->rating; $i++) <span class="fa fa-star star-checked"></span> @endfor
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
-                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
-                        natus inventore illo.</p>
+                        <p>{{$review->comment}}</p>
                 </div>
             </div>
-
-            <div class="review row border rounded p-2 mb-2">
-                <div class="col-md-4 d-flex align-items-center">
-                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
-                    <div class="container">
-                        <p class="mb-auto">Nama</p>
-                        <p class="mb-auto">DD/MM/YYY</p>
-                    </div>
-                </div>
-
-                <div class="col-md-8 review-border">
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star star-checked"></span>
-                    <span class="fa fa-star"></span>
-
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, iusto nam! Qui eaque, hic
-                        enim doloremque facere atque voluptatibus nisi numquam illum debitis totam, nihil eos maiores
-                        natus inventore illo.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -244,8 +221,9 @@
 </div>
 
 
-<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>     
+<link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
