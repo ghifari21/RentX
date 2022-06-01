@@ -15,7 +15,6 @@ class ReviewController extends Controller
         //apakah buyer sudah melakukan sewa sebelumnya
         $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
         $order = Order::where([['property_id','=',$property->id],['buyer_id','=',$buyer->id],['status','=','paid']])->first();
-        //dd($order);
         $is_order= (is_null($order)) ? 0 : $order->count();
         //apakah buyer pernah rivew sebelumnya
         if($is_order){
@@ -23,7 +22,7 @@ class ReviewController extends Controller
             $is_review = Review::where([['order_id','=',$order_id],['property_id','=',$property->id],['buyer_id','=',$buyer->id]])->count();
         }
         if($is_order && !$is_review){
-            return view('comment',[
+            return view('comment.index',[
                 'title' => "Update",
                 'property' => $property
             ]);
@@ -72,5 +71,17 @@ class ReviewController extends Controller
         Review::create($validatedData);
 
         return redirect('/dashboard')->with('success', 'Order has been sent,wait seller confirmation!');
+    }
+
+    public function indexForDashboardBuyer(Order $order){
+        $property=Property::firstWhere('id',$order->property_id );
+        return view('comment',[
+            'title' => "Update",
+            'property' => $property
+        ]);
+    }
+
+    public function showReview(Review $review){
+        
     }
 }

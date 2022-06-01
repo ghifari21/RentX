@@ -78,8 +78,10 @@ Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'view
 Route::put('/dashboard/change-password/{user:username}', [DashboardBuyerController::class, 'changePassword']);
 
 # routing untuk halaman buyer Riview/Komentar
-Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);
+Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);#untuk di halaman detail property
+Route::get('/buyers/review/dashboard/{order:id}',[ReviewController::class,'indexForDashboardBuyer']);#untuk di halaman dashboard buyer
 
+Route::delete('buyers/review/{review:id}');
 Route::post('/buyers/review/{property:slug}',[ReviewController::class,'store']);
 
 # routing untuk order
