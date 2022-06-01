@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Seller;
-use App\Models\Property;
+use Carbon\Carbon;
 use App\Models\Buyer;
 use App\Models\Order;
 use App\Models\Review;
+use App\Models\Seller;
+use App\Models\Property;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
@@ -82,7 +83,11 @@ class ReviewController extends Controller
     }
 
     public function update(Request $request, $id){
-        $review = Review::find($id)->update($request->all());
+        $review = Review::find($id);
+        $review->update($request->all());
+        // $review->updated_at = Carbon::now()->toDateTimeString();
+        // //dd(Carbon::now()->toDateTimeString());
+        // $review->save();
         return back()->with('success',' Data telah diperbaharui!');
     }
 }
