@@ -54,19 +54,16 @@ class DatabaseSeeder extends Seeder
 
         Buyer::factory()->create([
             'user_id' => 1,
-            'nik' => '20090841',
             'photo_profile' => "https://source.unsplash.com/300x300?person",
             'phone' => '08412461247'
         ]);
         Buyer::factory()->create([
             'user_id' => 2,
-            'nik' => '2009041241241',
             'photo_profile' => "https://source.unsplash.com/300x300?person",
             'phone' => '084124622427'
         ]);
         Buyer::factory()->create([
             'user_id' => 3,
-            'nik' => '20021841',
             'photo_profile' => "https://source.unsplash.com/300x300?person",
             'phone' => '08153461247'
         ]);

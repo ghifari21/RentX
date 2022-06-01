@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->text('address');
             $table->string('photo_profile')->nullable();
-            $table->string('photo_ktp');
-            $table->string('photo_selfie');
-            $table->string('status');
+            $table->string('photo_ktp')->nullable();
+            $table->string('photo_selfie')->nullable();
+            $table->string('status')->default("pending");
             $table->string('phone')->unique();
             $table->timestamps();
         });
