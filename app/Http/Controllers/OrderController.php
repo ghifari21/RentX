@@ -16,6 +16,7 @@ class OrderController extends Controller
         //validate data
         // dd($property);
 
+
         $validatedData = $request->validate([
             'check_in'=>'required',
             'duration'=>'required',

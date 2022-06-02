@@ -139,9 +139,11 @@
     <div class="row mt-4">
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h2>Review</h2>
+            @if(App\Http\Controllers\reviewController::checkReview($property))
             <a href="/buyers/review/{{$property->slug}}">
                 <button type="submit" class="btn btn-wide btn-success">Tambahkan Ulasan</button>
             </a>
+            @endif
         </div>
         <div class="container detail-container border border-secondary rounded p-3"
             style="overflow-y: auto; height: 41vh">

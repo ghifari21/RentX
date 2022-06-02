@@ -115,7 +115,71 @@ class DatabaseSeeder extends Seeder
             'photo_profile' => "https://source.unsplash.com/300x300?person",
         ]);
 
-        Property::factory(25)->create();
+        // Order::factory()->create([
+        //     'seller_id'=>2,
+        //     'buyer_id'=>1,
+        //     'property_id'=>1,
+        //     'date_order'=>2020-06-15,
+        //     'check_in'=>2020-06-15,
+        //     'check_out'=>2020-07-15,
+        //     'duration'=>1,
+        //     'total_payment'=>345345,
+        //     'status'=>'reviewed',
+        // ]);
+
+        // Order::factory()->create([
+        //     'seller_id'=>2,
+        //     'buyer_id'=>1,
+        //     'property_id'=>1,
+        //     'date_order'=>2020-06-15,
+        //     'check_in'=>2020-06-15,
+        //     'check_out'=>2020-07-15,
+        //     'duration'=>1,
+        //     'total_payment'=>345345,
+        //     'status'=>'reviewed',
+        // ]);
+
+        // Order::factory()->create([
+        //     'seller_id'=>2,
+        //     'buyer_id'=>2,
+        //     'property_id'=>1,
+        //     'date_order'=>2020-06-15,
+        //     'check_in'=>2020-06-15,
+        //     'check_out'=>2020-07-15,
+        //     'duration'=>1,
+        //     'total_payment'=>345345,
+        //     'status'=>'reviewed',
+        // ]);
+        
+        // Order::factory()->create([
+        //     'seller_id'=>2,
+        //     'buyer_id'=>3,
+        //     'property_id'=>1,
+        //     'date_order'=>2020-06-15,
+        //     'check_in'=>2020-06-15,
+        //     'check_out'=>2020-07-15,
+        //     'duration'=>1,
+        //     'total_payment'=>345345,
+        //     'status'=>'reviewed',
+        // ]);
+
+        $properties = Property::factory(25)->create();
+        
+        foreach ($properties as $pro) {
+            $orders = Order::factory(3)
+            ->create([
+                'seller_id' => $pro->seller_id,
+                'property_id' => $pro->id
+            ]);
+            
+            foreach ($orders as $order) {
+                Review::factory()->create([
+                    'order_id' => $order->id,
+                    'buyer_id' => $order->buyer_id,
+                    'property_id' => $pro->id
+                ]);
+            }
+        }
 
         // Order::factory(20)->create();
 
