@@ -88,6 +88,26 @@
                         <label class="form-check-label" for="inlineRadio2">Campur</label>
                     </div>
                 </div>
+
+                <div class="col-sm-1">
+                    <p class="add-rentplace-label">Jenis Property</p>
+                </div>
+
+                <div class="col-sm-auto">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kos" @if (old('property_type') == "Kos")
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="inlineRadio1">Kos</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio2" value="Kontrakan" @if (old('property_type') == "Kontrakan")
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="inlineRadio2">Kontrakan</label>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group row mb-2">
@@ -129,7 +149,7 @@
                 <div class="col-sm-4">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <label for="inputPanjangKamar">Panjang Kamar</label>
+                            <label for="inputPanjangKamar">Panjang Kamar (Meter)</label>
                             <input type="number" class="form-control @error('room_length') is-invalid @enderror" name="room_length" id="inputPanjangKamar" placeholder="Panjang Kamar" value="{{ old('room_length') }}">
                         @error('room_length')
                             <div class="invalid-feedback">
@@ -144,7 +164,7 @@
                         </div>
 
                         <div>
-                            <label for="inputLebarKamar">Lebar Kamar</label>
+                            <label for="inputLebarKamar">Lebar Kamar (Meter)</label>
                             <input type="number" class="form-control @error('room_width') is-invalid @enderror" name="room_width" id="inputLebarKamar" placeholder="Lebar Kamar" value="{{ old('room_width') }}">
                             @error('room_length')
                                 <div class="invalid-feedback">
