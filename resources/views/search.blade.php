@@ -29,7 +29,7 @@
         </ul>
     </div>
 
-    <div class="container mt-3" style="overflow-y: auto; height: 120vh">
+    <div class="container mt-3">
         @foreach ($properties as $property)
         <a href="/property/{{ $property->slug }}" class="text-black" style="text-decoration: none;">
             <div class="card card-browse">
@@ -66,6 +66,9 @@
         {{ $properties->links() }}
     </div>
 </div>
+
+<!-- divider -->
+<div class="row" style="background-color:white; height: 150px; width: 10px;"></div>
 
 <!-- footer section  -->
 @include('partials.footer2')
