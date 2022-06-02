@@ -12,24 +12,24 @@
             <p class="add-rentplace-label fw-bold">Foto Kos / Kontrakan</p>
             <div class="d-flex gap-5">
                 <div class="mb-3">
-                    <label for="formFile1" class="form-label">Foto 1</label>
-                    <input class="form-control" type="file" id="formFile1">
+                    <label for="photo_1" class="form-label">Foto 1</label>
+                    <input class="form-control" type="file" name="photo_1" id="photo_1" value="{{ old('photo_1') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile2" class="form-label">Foto 2</label>
-                    <input class="form-control" type="file" id="formFile2">
+                    <label for="photo_2" class="form-label">Foto 2</label>
+                    <input class="form-control" type="file" name="photo_2" id="photo_2" value="{{ old('photo_2') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile3" class="form-label">Foto 3</label>
-                    <input class="form-control" type="file" id="formFile3">
+                    <label for="photo_3" class="form-label">Foto 3</label>
+                    <input class="form-control" type="file" name="photo_3" id="photo_3" value="{{ old('photo_3') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile4" class="form-label">Foto 4</label>
-                    <input class="form-control" type="file" id="formFile4">
+                    <label for="photo_4" class="form-label">Foto 4</label>
+                    <input class="form-control" type="file" name="photo_4" id="photo_4" value="{{ old('photo_4') }}">
                 </div>
                 <div class="mb-3">
-                    <label for="formFile5" class="form-label">Foto 5</label>
-                    <input class="form-control" type="file" id="formFile5">
+                    <label for="photo_5" class="form-label">Foto 5</label>
+                    <input class="form-control" type="file" name="photo_5" id="photo_5" value="{{ old('photo_5') }}">
                 </div>
             </div>
         </div>
@@ -65,23 +65,17 @@
 
                 <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio1" value="Putra" @if (old('rent_for') == "Putra")
-                            checked
-                        @endif>
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio1" value="Putra" @if (old('rent_for') == "Putra") checked @endif>
                         <label class="form-check-label" for="inlineRadio1">Putra</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Putri" @if (old('rent_for') == "Putri")
-                            checked
-                        @endif>
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Putri" @if (old('rent_for') == "Putri") checked @endif>
                         <label class="form-check-label" for="inlineRadio2">Putri</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Campur" @if (old('rent_for') == "Campur")
-                            checked
-                        @endif>
+                        <input class="form-check-input" type="radio" name="rent_for" id="inlineRadio2" value="Campur" @if (old('rent_for') == "Campur") checked @endif>
                         <label class="form-check-label" for="inlineRadio2">Campur</label>
                     </div>
                 </div>
@@ -92,16 +86,12 @@
 
                 <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kos" @if (old('property_type') == "Kos")
-                            checked
-                        @endif>
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kos" @if (old('property_type') == "Kos") checked @endif>
                         <label class="form-check-label" for="inlineRadio1">Kos</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio2" value="Kontrakan" @if (old('property_type') == "Kontrakan")
-                            checked
-                        @endif>
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio2" value="Kontrakan" @if (old('property_type') == "Kontrakan") checked @endif>
                         <label class="form-check-label" for="inlineRadio2">Kontrakan</label>
                     </div>
                 </div>

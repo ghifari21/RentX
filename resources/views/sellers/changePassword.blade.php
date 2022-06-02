@@ -45,6 +45,6 @@
         </div>
     </form>
 </div>
-
+<br/><br/><br/><br/>
 <!-- footer section  -->
 @include('partials.footer2')
