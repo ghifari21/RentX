@@ -95,6 +95,8 @@ Route::put('/seller/dashboard/profile/{user:username}', [DashboardSellerControll
 
 Route::get('/seller/dashboard/create', [DashboardSellerController::class, 'create'])->middleware('seller');
 
+Route::get('/seller/dashboard/checkSlug', [DashboardSellerController::class, 'checkSlug'])->middleware('seller');
+
 Route::put('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'update'])->middleware('seller');
 
 Route::delete('/seller/dashboard/{property:slug}', [DashboardSellerController::class, 'destroy'])->middleware('seller');

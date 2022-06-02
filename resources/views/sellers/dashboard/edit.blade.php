@@ -14,23 +14,23 @@
             <div class="d-flex gap-5">
                 <div class="mb-3">
                     <label for="photo_1" class="form-label">Foto 1</label>
-                    <input class="form-control" type="file" name="photo_1" id="photo_1" value="{{ old('photo_1', $property->photo_1) }}">
+                    <input class="form-control" type="file" name="photo_1" id="photo_1">
                 </div>
                 <div class="mb-3">
                     <label for="photo_2" class="form-label">Foto 2</label>
-                    <input class="form-control" type="file" name="photo_2" id="photo_2" value="{{ old('photo_2', $property->photo_2) }}">
+                    <input class="form-control" type="file" name="photo_2" id="photo_2">
                 </div>
                 <div class="mb-3">
                     <label for="photo_3" class="form-label">Foto 3</label>
-                    <input class="form-control" type="file" name="photo_3" id="photo_3" value="{{ old('photo_3', $property->photo_3) }}">
+                    <input class="form-control" type="file" name="photo_3" id="photo_3">
                 </div>
                 <div class="mb-3">
                     <label for="photo_4" class="form-label">Foto 4</label>
-                    <input class="form-control" type="file" name="photo_4" id="photo_4" value="{{ old('photo_4', $property->photo_4) }}">
+                    <input class="form-control" type="file" name="photo_4" id="photo_4">
                 </div>
                 <div class="mb-3">
                     <label for="photo_5" class="form-label">Foto 5</label>
-                    <input class="form-control" type="file" name="photo_5" id="photo_5" value="{{ old('photo_5', $property->photo_5) }}">
+                    <input class="form-control" type="file" name="photo_5" id="photo_5">
                 </div>
             </div>
         </div>
@@ -46,6 +46,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <input type="hidden" id="slug" name="slug" required value="{{ old('slug', $property->slug) }}">
                 </div>
             </div>
 
@@ -87,7 +88,7 @@
 
                 <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kos" @if (old('property_type', $property->property_type) == "Kos") checked @endif>
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kosan" @if (old('property_type', $property->property_type) == "Kosan") checked @endif>
                         <label class="form-check-label" for="inlineRadio1">Kos</label>
                     </div>
 
@@ -229,4 +230,14 @@
 
     <!-- footer section  -->
     @include('partials.footer2')
+<script>
+    const title = document.querySelector('#title');
+    const slug = document.querySelector('#slug');
+
+    title.addEventListener('change', () => {
+        fetch('/seller/dashboard/checkSlug?title=' + title.value)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
+    });
+</script>
 @endsection

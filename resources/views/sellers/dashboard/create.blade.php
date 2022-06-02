@@ -45,6 +45,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <input type="hidden" id="slug" name="slug" required value="{{ old('slug') }}">
                 </div>
             </div>
 
@@ -86,8 +87,8 @@
 
                 <div class="col-sm-auto">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kos" @if (old('property_type') == "Kos") checked @endif>
-                        <label class="form-check-label" for="inlineRadio1">Kos</label>
+                        <input class="form-check-input" type="radio" name="property_type" id="inlineRadio1" value="Kosan" @if (old('property_type') == "Kosan") checked @endif>
+                        <label class="form-check-label" for="inlineRadio1">Kosan</label>
                     </div>
 
                     <div class="form-check form-check-inline">
@@ -131,7 +132,7 @@
                     @enderror
                 </div>
 
-                <div class="col-sm-2"></div> 
+                <div class="col-sm-2"></div>
 
                 <div class="col-sm-4">
                     <div class="d-flex justify-content-between">
@@ -228,4 +229,14 @@
 
 <!-- footer section  -->
 @include('partials.footer2')
+<script>
+    const title = document.querySelector('#title');
+    const slug = document.querySelector('#slug');
+
+    title.addEventListener('change', () => {
+        fetch('/seller/dashboard/checkSlug?title=' + title.value)
+            .then(response => response.json())
+            .then(data => slug.value = data.slug)
+    });
+</script>
 @endsection
