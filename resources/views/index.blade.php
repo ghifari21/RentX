@@ -10,7 +10,7 @@
 
     <form action="/search" class="form-inline">
       <input class="form-control mb-2 mr-sm-2" id="search-input" name="search"
-        placeholder="Cari kos yang anda inginkan">
+        placeholder="Cari kos yang anda inginkan" value="{{ request('search') }}" required>
       <button type="submit" class="btn btn-primary mb-2">Cari</button>
     </form>
   </div>
@@ -27,7 +27,7 @@
         <div class="swiper-slide">
           @foreach ($properties->take(5) as $property)
           <div class="card">
-            <img src="/img/sanapg.jpg" class="card-img-top" alt="House" style="width: 100%;">
+            <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" style="width: 100%;">
             <div class="card-body">
               <p class="card-text">{{ $property->title }}</p>
               <span class="fa fa-star star-checked">{{$property->rating}}</span>
@@ -40,7 +40,7 @@
         <div class="swiper-slide">
           @foreach ($properties->skip(5) as $property)
           <div class="card">
-            <img src="{{ $property->photo_1 }}" class="card-img-top" alt="House">
+            <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House">
             <div class="card-body">
               <p class="card-text">{{ $property->title }}</p>
             </div>
@@ -65,25 +65,25 @@
   <div class="row">
     <h2 class="mt-2 mb-2">Area Kos / Kontrakan Populer</h2>
     <div class="col-md">
-      <a href="" class="text-black" style="text-decoration: none;">
+      <a href="/search?city=bandung" class="text-black" style="text-decoration: none;">
         <img src="/img/bandung.jpg" alt="Bandung" class="rounded w-100" height="200">
         <p class="text-center fw-bold fs-4">Bandung</p>
       </a>
     </div>
     <div class="col-md">
-      <a href="" class="text-black" style="text-decoration: none;">
+      <a href="/search?city=jakarta" class="text-black" style="text-decoration: none;">
         <img src="/img/jakarta.jpg" alt="Jakarta" class="rounded w-100" height="200">
         <p class="text-center fw-bold fs-4">Jakarta</p>
       </a>
     </div>
     <div class="col-md">
-      <a href="" class="text-black" style="text-decoration: none;">
+      <a href="/search?city=semarang" class="text-black" style="text-decoration: none;">
         <img src="/img/semarang.jpg" alt="Semarang" class="rounded w-100" height="200">
         <p class="text-center fw-bold fs-4">Semarang</p>
       </a>
     </div>
     <div class="col-md">
-      <a href="" class="text-black" style="text-decoration: none;">
+      <a href="/search?city=surabaya" class="text-black" style="text-decoration: none;">
         <img src="/img/surabaya.jpg" alt="Surabaya" class="rounded w-100" height="200">
         <p class="text-center fw-bold fs-4">Surabaya</p>
       </a>
@@ -97,3 +97,4 @@
 <!-- footer section  -->
 @include('partials.footer2')
 @endsection
+
