@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Property extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $guarded = ['id'];
 
@@ -36,5 +37,13 @@ class Property extends Model
 
     public function getRouteKeyName() {
         return 'slug';
+    }
+
+    public function sluggable(): array {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
