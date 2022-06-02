@@ -35,8 +35,7 @@
             <div class="card card-browse">
                 <div class="row">
                     <div class="col">
-                        <img src="{{ $property->photo_1 }}" class="card-img-browse" height="208" width="300"
-                            alt="{{ $property->title }}">
+                        <img src="{{ $property->photo_1 }}" class="card-img-browse" height="208" width="300">
                     </div>
                     <div class="col">
                         <div class="card-body">
