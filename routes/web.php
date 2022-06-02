@@ -48,20 +48,6 @@ Route::get('/payment/{order:id}', [OrderController::class, 'payment'])->middlewa
 
 Route::put('/payment/{order:id}', [OrderController::class, 'paymentAccepted']);
 
-# routing untuk halaman buyer History
-Route::get('/buyers/history', function () {
-    return view('buyers.history', [
-        'title' => 'Riwayat Kos',
-        'name' => 'Johnny Sins',
-        'email' => 'mail@email.com',
-        'optionName' => 'Riwayat Kos',
-        'propertyName' => 'Kosan Brothel Gerlong Triple X',
-        'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069',
-        'propertyPrice' => 'Rp 1.000.000',
-        'duration' => '21/06/2022 - 32/13/2069'
-    ]);
-});
-
 # routing untuk halaman buyer Verification
 
 //BUYER
@@ -71,6 +57,8 @@ Route::get('/dashboard', [DashboardBuyerController::class, 'index'])->middleware
 Route::get('/dashboard/{user:username}/edit', [DashboardBuyerController::class, 'edit'])->middleware('auth');
 
 Route::put('/dashboard/{user:username}', [DashboardBuyerController::class, 'update']);
+
+Route::get('/dashboard/history', [DashboardBuyerController::class, 'history'])->middleware('auth');
 
 Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'viewChangePassword'])->middleware('auth');
 
@@ -90,6 +78,8 @@ Route::put('/buyers/review/{id}',[ReviewController::class,'update']);
 
 # routing untuk order
 Route::post('/buyers/order/{property:slug}', [OrderController::class,'store']);
+
+Route::get('/dashboard/order/stop/{order:id}', [OrderController::class, 'stop'])->middleware('auth');
 
 // SELLER
 # routing untuk halaman Dashboard Seller
