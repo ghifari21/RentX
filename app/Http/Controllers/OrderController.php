@@ -16,6 +16,10 @@ class OrderController extends Controller
         //validate data
         // dd($property);
 
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        if ($seller->id === $property->seller_id) {
+            return back()->with('error', 'Tidak boleh melakukan ajukan order pada properti milik sendiri!');
+        }
 
         $validatedData = $request->validate([
             'check_in'=>'required',
@@ -74,5 +78,12 @@ class OrderController extends Controller
         Order::where('id', $order->id)->update($validatedData);
 
         return redirect('/dashboard')->with('success', 'Payment has been successfully made!');
+    }
+
+    public function stop(Order $order) {
+        $order->check_out = today();
+        $order->save();
+
+        return back()->with('success', 'Anda telah berhasil memberhentikan sewa untuk Order ID: ' . $order->id);
     }
 }

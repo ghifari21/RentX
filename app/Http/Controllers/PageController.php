@@ -18,9 +18,18 @@ class PageController extends Controller
     }
 
     public function search() {
+        if (request('sort') == 'recommend') {
+            $property = Property::orderBy('rating', 'desc')->orderBy('total_reviewer','desc');
+        } else if (request('sort') == 'highest-price') {
+            $property = Property::orderBy('price', 'desc');
+        } else if (request('sort') == 'lowest-price') {
+            $property = Property::orderBy('price', 'asc');
+        } else {
+            $property = Property::latest();
+        }
         return view('search', [
             'title' => 'Cari',
-            'properties' => Property::orderBy('rating', 'desc')->orderBy('total_reviewer','desc')->filter(request(['search']))->paginate(10)
+            'properties' => $property->filter(request(['search', 'type', 'for']))->paginate(10)->withQueryString()
         ]);
     }
 
@@ -28,7 +37,7 @@ class PageController extends Controller
         return view('property', [
             'title' => 'Detail Properti',
             'property' => $property,
-            'properties' => Property::orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
+            'properties' => Property::where('city', $property->city)->orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
             'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
         ]);
     }

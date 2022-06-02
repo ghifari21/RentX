@@ -11,23 +11,21 @@
                         <tr style="background-color: #BFBFBF;">
                             <th class="col">No</th>
                             <th class="col">Nama</th>
-                            <th class="col">No. Telepon</th>
-                            <th class="col">Email</th>
                             <th class="col">Username</th>
-                            <th class="col">Password</th>
-                            <th class="col">No. KTP</th>
+                            <th class="col">Email</th>
+                            <th class="col">No. Telepon</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Eimi Fukada</td>
-                            <td>0852696969696</td>
-                            <td>Jl. Tokyo Ohayou Konnichiwa</td>
-                            <td>eimiSlav@gmail.com</td>
-                            <td>eimiSlav69</td>
-                            <td>3211123669691242</td>
-                        </tr>
+                        @foreach ($buyers as $buyer)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $buyer->user->name }}</td>
+                                <td>{{ $buyer->user->username }}</td>
+                                <td>{{ $buyer->user->email }}</td>
+                                <td>{{ $buyer->phone }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

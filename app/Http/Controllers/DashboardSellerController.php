@@ -21,8 +21,6 @@ class DashboardSellerController extends Controller
     public function index()
     {
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
-        // dd($seller->id);
-        // dd(Property::where('seller_id', $seller->id)->get());
         return view('sellers.dashboard.index', [
             'title' => 'Daftar Property',
             'optionName' => 'Daftar Property',
@@ -55,39 +53,30 @@ class DashboardSellerController extends Controller
         // dd($request);
         $validatedData = $request->validate([
             'title' => 'required|max:150',
-            // 'slug' => 'required|unique:properties',
+            'slug' => 'required|unique:properties',
             'property_type' =>'required',
             'is_available' => 'required',
             'address' =>'required|max:255',
             'link_location' =>'required|max:150' ,
             'price' => 'required',
-            'photo_1' => 'required',
-            'photo_2' => 'required',
-            'photo_3' => 'required',
-            'photo_4' => 'required',
-            'photo_5' => 'required',
-            // 'photo_1' => 'image|file|max:2048',
-            // 'photo_2' => 'image|file|max:2048',
-            // 'photo_3' => 'image|file|max:2048',
-            // 'photo_4' => 'image|file|max:2048',
-            // 'photo_5' => 'image|file|max:2048',
+            'photo_1' => 'required|image|file|max:2048',
+            'photo_2' => 'required|image|file|max:2048',
+            'photo_3' => 'required|image|file|max:2048',
+            'photo_4' => 'required|image|file|max:2048',
+            'photo_5' => 'required|image|file|max:2048',
             'description' => 'required|max:500',
+            'property_type' => 'required'
         ]);
-
-        // dd($validatedData);
-
-        $validatedData['slug'] = 'test-dummy';
-        $validatedData['property_type'] = 'kosan';
-
-        // $validatedData['photo_1'] = $request->file('photo_1')->store('post-images');
-        // $validatedData['photo_2'] = $request->file('photo_2')->store('post-images');
-        // $validatedData['photo_3'] = $request->file('photo_3')->store('post-images');
-        // $validatedData['photo_4'] = $request->file('photo_4')->store('post-images');
-        // $validatedData['photo_5'] = $request->file('photo_5')->store('post-images');
+        // $validatedData['slug'] = 'test-dummy';
+        // $validatedData['property_type'] = 'kosan';
+        $validatedData['photo_1'] = $request->file('photo_1')->store('property-images');
+        $validatedData['photo_2'] = $request->file('photo_2')->store('property-images');
+        $validatedData['photo_3'] = $request->file('photo_3')->store('property-images');
+        $validatedData['photo_4'] = $request->file('photo_4')->store('property-images');
+        $validatedData['photo_5'] = $request->file('photo_5')->store('property-images');
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
         $validatedData['seller_id'] = $seller->id;
-
 
         Property::create($validatedData);
 
@@ -107,12 +96,11 @@ class DashboardSellerController extends Controller
         $orders = Order::with(['seller', 'buyer', 'property']);
         $orders = $orders->where([['seller_id','=',$seller->id],['status','=','pending']])->get();
 
-        // dd($seller->id);
-        // dd(Property::where('seller_id', $seller->id)->get());
         return view('sellers.dashboard.transaksi', [
             'title' => 'Order Property',
             'optionName' => 'Order Property',
-            'orders' => $orders
+            'orders' => $orders,
+            'seller' => $seller
             // 'profile' => Seller::where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -124,8 +112,6 @@ class DashboardSellerController extends Controller
         $orders = Order::with(['seller', 'buyer', 'property']);
         $orders = $orders->where([['seller_id','=',$seller->id],['status','=','pending']])->get();
 
-        // dd($seller->id);
-        // dd(Property::where('seller_id', $seller->id)->get());
         return view('sellers.dashboard.transaksi', [
             'title' => 'Order Property',
             'optionName' => 'Order Property',
@@ -135,8 +121,6 @@ class DashboardSellerController extends Controller
     }
 
     public function orderAction(Request $request,Order $order){
-        //$order->status="accepted";
-        //dd("tes");
         if($request->input('status')=='accepted'){
 
             $data = $request->validate(['status'=>"required"]);
@@ -237,21 +221,11 @@ class DashboardSellerController extends Controller
      */
     public function destroy(Property $property)
     {
-        if ($property->photo_1) {
-            Storage::delete($property->photo_1);
-        }
-        if ($property->photo_2) {
-            Storage::delete($property->photo_2);
-        }
-        if ($property->photo_3) {
-            Storage::delete($property->photo_3);
-        }
-        if ($property->photo_4) {
-            Storage::delete($property->photo_4);
-        }
-        if ($property->photo_5) {
-            Storage::delete($property->photo_5);
-        }
+        Storage::delete($property->photo_1);
+        Storage::delete($property->photo_2);
+        Storage::delete($property->photo_3);
+        Storage::delete($property->photo_4);
+        Storage::delete($property->photo_5);
 
         Property::destroy($property->id);
 
@@ -337,11 +311,7 @@ class DashboardSellerController extends Controller
             'title' => 'Riwayat Transaksi',
             'seller' => $seller,
             'orders' => Order::where('seller_id', $seller->id)->get(),
-            'name' => 'Fukada Eimi',
-            'email' => 'mail@email.com',
             'optionName' => 'Riwayat Transaksi',
-            'propertyName' => 'Kosan Brothel Gerlong Triple X',
-            'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
         ]);
     }
 }

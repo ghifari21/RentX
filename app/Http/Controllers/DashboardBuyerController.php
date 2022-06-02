@@ -124,4 +124,13 @@ class DashboardBuyerController extends Controller
 
         return redirect('/dashboard')->with('success', 'Your request has been sent.');
     }
+
+    public function history() {
+        return view('buyers.history', [
+            'title' => 'Riwayat Kos',
+            'buyer' => Buyer::firstWhere('user_id', auth()->user()->id),
+            'seller' => Seller::firstWhere('user_id', auth()->user()->id),
+            'orders' => Order::where('check_out', '<', today())
+        ]);
+    }
 }
