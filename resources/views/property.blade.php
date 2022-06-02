@@ -8,7 +8,7 @@
         <div class="col-md">
             <p class="detail-product-title fw-bold fs-4">{{ $property->title }}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <p class="text-larger">Lokasi</p> <!-- Need to change this later -->
+                <p class="text-larger">{{ $property->city }}</p> <!-- Need to change this later -->
             </div>
         </div>
         <div class="col-md"></div>
@@ -90,11 +90,6 @@
                             <p class="text-larger text-bolder">Rp XXX.XXX.XXX</p>
                         </div> -->
 
-                    <div class="d-flex justify-conten btn-success mb-2">
-                        <label class="text-larger" for="total_payment">Bayar</label>
-                        <input type="number" class="form-control" name="total_payment" id="total_payment">
-                    </div>
-
                     <!-- check status properti available ato engga!-->
                     {{-- @if() --}}
                     <button class="btn btn-full-width btn-success" type="submit">Ajukan Sewa</button>
@@ -107,7 +102,7 @@
                 <div class="d-flex align-items-center">
                     <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
                     <div class="container">
-                        <p class="text-larger mb-auto">Nama btn-info emilik</p>
+                        <p class="text-larger mb-auto">{{ $property->seller->user->name }}</p>
                     </div>
                 </div>
             </div>
@@ -117,7 +112,7 @@
     <div class="row mt-4">
         <h2>Deskripsi</h2>
         <div class="container detail-container border border-secondary rounded p-2">
-            {!! $property->description !!}
+            {{ $property->description }}
         </div>
     </div>
 
@@ -161,7 +156,6 @@
                 </div>
                 <div class="col-md-8 review-border">
                     @for ($i = 0; $i < $review->rating; $i++) <span class="fa fa-star star-checked"></span> @endfor
-
                         <p>{{$review->comment}}</p>
                 </div>
             </div>
