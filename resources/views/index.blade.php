@@ -26,25 +26,30 @@
         {{-- slide 1 --}}
         <div class="swiper-slide">
           @foreach ($properties->take(5) as $property)
-          <div class="card">
-            <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" style="width: 100%;">
-            <div class="card-body">
-              <p class="card-text">{{ $property->title }}</p>
-              <span class="fa fa-star star-checked">{{$property->rating}}</span>
+          <a href="/property/{{ $property->slug }}" class="text-black" style="text-decoration: none;">
+            <div class="card">
+                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" style="width: 100%;">
+                <div class="card-body">
+                    <p class="card-text">{{ $property->title }}</p>
+                    <span class="fa fa-star star-checked">{{$property->rating}}</span>
+                </div>
             </div>
-          </div>
+        </a>
           @endforeach
         </div>
 
         {{-- slide 2 --}}
         <div class="swiper-slide">
           @foreach ($properties->skip(5) as $property)
-          <div class="card">
-            <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House">
-            <div class="card-body">
-              <p class="card-text">{{ $property->title }}</p>
+          <a href="/property/{{ $property->slug }}" class="text-black" style="text-decoration: none;">
+            <div class="card">
+                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House">
+                <div class="card-body">
+                    <p class="card-text">{{ $property->title }}</p>
+                    <span class="fa fa-star star-checked">{{$property->rating}}</span>
+                </div>
             </div>
-          </div>
+        </a>
           @endforeach
         </div>
 

@@ -30,6 +30,12 @@ class Property extends Model
                 $query->where('rent_for', $for);
             });
         });
+
+        $query->when($filters['city'] ?? false, function($query, $city) {
+            return $query->where(function($query) use ($city) {
+                $query->where('city', $city);
+            });
+        });
     }
 
     // seller relation

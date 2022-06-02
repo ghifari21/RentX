@@ -29,7 +29,7 @@ class PageController extends Controller
         }
         return view('search', [
             'title' => 'Cari',
-            'properties' => $property->filter(request(['search', 'type', 'for']))->paginate(10)->withQueryString()
+            'properties' => $property->filter(request(['search', 'type', 'for', 'city']))->paginate(10)->withQueryString()
         ]);
     }
 
