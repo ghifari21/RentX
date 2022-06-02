@@ -79,4 +79,11 @@ class OrderController extends Controller
 
         return redirect('/dashboard')->with('success', 'Payment has been successfully made!');
     }
+
+    public function stop(Order $order) {
+        $order->check_out = today();
+        $order->save();
+
+        return back()->with('success', 'Anda telah berhasil memberhentikan sewa untuk Order ID: ' . $order->id);
+    }
 }

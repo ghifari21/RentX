@@ -312,11 +312,7 @@ class DashboardSellerController extends Controller
             'title' => 'Riwayat Transaksi',
             'seller' => $seller,
             'orders' => Order::where('seller_id', $seller->id)->get(),
-            'name' => 'Fukada Eimi',
-            'email' => 'mail@email.com',
             'optionName' => 'Riwayat Transaksi',
-            'propertyName' => 'Kosan Brothel Gerlong Triple X',
-            'propertyAddress' => 'Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat 45069'
         ]);
     }
 }
