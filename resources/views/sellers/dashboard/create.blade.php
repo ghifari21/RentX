@@ -4,7 +4,7 @@
 <!-- navbar section -->
 @include('partials.navbar2')
 
-<div class="container px-5 mb-5">
+<div class="container px-5 mb-5 mt-5">
     <h4 class="fw-bold">Tambah Kos / Kontrakan</h4>
     <form action="/seller/dashboard" method="POST" enctype="multipart/form-data">
         @csrf
