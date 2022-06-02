@@ -35,7 +35,8 @@
                         @if ($order->status == "accepted")
                         <a class="btn btn-success mb-0" href="/payment/{{ $order->id }}">Bayar</a>
                         @elseif ($order->status == "paid")
-                        <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-0" onclick="return confirm('Apakah anda yakin?')">Berhenti Sewa</button></a>
+                        <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-0"
+                                onclick="return confirm('Apakah anda yakin?')">Berhenti Sewa</button></a>
                         @endif
                     </div>
                     <div class="row">

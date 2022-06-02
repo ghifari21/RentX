@@ -110,7 +110,7 @@ class ReviewController extends Controller
 
     public function indexForDashboardBuyer(Order $order){
         $property=Property::firstWhere('id',$order->property_id );
-        return view('comment',[
+        return view('comment.index',[
             'title' => "Update",
             'property' => $property
         ]);

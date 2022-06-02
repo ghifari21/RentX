@@ -163,22 +163,22 @@ class DatabaseSeeder extends Seeder
         //     'status'=>'reviewed',
         // ]);
 
-        $properties = Property::factory(25)->create();
+        $properties = Property::factory(10)->create();
         
         foreach ($properties as $pro) {
-            $orders = Order::factory(3)
+            $orders = Order::factory(2)
             ->create([
                 'seller_id' => $pro->seller_id,
                 'property_id' => $pro->id
             ]);
             
-            foreach ($orders as $order) {
-                Review::factory()->create([
-                    'order_id' => $order->id,
-                    'buyer_id' => $order->buyer_id,
-                    'property_id' => $pro->id
-                ]);
-            }
+            // foreach ($orders as $order) {
+            //     Review::factory()->create([
+            //         'order_id' => $order->id,
+            //         'buyer_id' => $order->buyer_id,
+            //         'property_id' => $pro->id
+            //     ]);
+            // }
         }
 
         // Order::factory(20)->create();

@@ -31,12 +31,12 @@ class OrderFactory extends Factory
             // 'seller_id'=>mt_rand(1, 3),
             'buyer_id'=> mt_rand(1, 3),
             // 'property_id'=> mt_rand(1, 26),
-            'date_order' => $this->faker->date(),
-            'check_in' => $this->faker->date(),
-            'check_out' => $this->faker->date(),
+            'date_order' => $this->faker->dateTimeBetween('-3 week','-2 week'),
+            'check_in' => $this->faker->dateTimeBetween('-2 week', '-1 week'),
+            'check_out' => $this->faker->dateTimeBetween('-1 week','+2 week'),
             'duration'=> $this->faker->numberBetween(1,365),
             'total_payment'=> $this->faker->numberBetween(100000,1000000),
-            'status'=>$this->faker->randomElement(["accepted","rejected",'pending','paid','reviewed'])
+            'status'=>$this->faker->randomElement(["accepted","rejected",'pending','paid'])
         ];
     }
 }
