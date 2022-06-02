@@ -8,33 +8,33 @@
     <div class="">
         <form action="/search" class="gap-4">
             <div class="form-inline">
-                <input class="form-control mb-2 mr-sm-2" id="search-input" name="search" placeholder="Cari kos yang anda inginkan">
+                <input class="form-control mb-2 mr-sm-2" id="search-input" name="search" placeholder="Cari kos yang anda inginkan" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary mb-2">Cari</button>
             </div>
             <div class="form-inline">
                 <ul class="list-group list-group-horizontal gap-2" style="list-style: none; border: none;">
-                    <li class="">
-                        <button type="submit" name="recommendation" id="recommendation" class="btn btn-primary rounded">Rekomendasi</button>
+                    <li>
+                        <select class="btn btn-primary form-select px-5 text-start" name="sort">
+                            <option {{ request('sort') == '' ? 'selected' : 'disable' }} value="">Urut Berdasarkan</option>
+                            <option {{ request('sort') == 'recommend' ? 'selected' : '' }} value="recommend">Rekomendasi</option>
+                            <option {{ request('sort') == 'highest-price' ? 'selected' : '' }} value="highest-price">Harga Tertinggi</option>
+                            <option {{ request('sort') == 'lowest-price' ? 'selected' : '' }} value="lowest-price">Harga Terendah</option>
+                        </select>
                     </li>
-                    <li class="">
-                        <button type="submit" name="price" id="price" class="btn btn-primary rounded">Harga</button>
+                    <li>
+                        <select class="btn btn-primary form-select px-5 text-start" name="type">
+                            <option {{ request('type') == '' ? 'selected' : 'disable' }} value="">Tipe Properti</option>
+                            <option {{ request('type') == 'kosan' ? 'selected' : '' }} value="kosan">Kosan</option>
+                            <option {{ request('type') == 'kontrakan' ? 'selected' : '' }} value="kontrakan">Kontrakan</option>
+                        </select>
                     </li>
-                    <li class="">
-                        <!-- <button type="submit" name="rent_for" id="rent_for" class="btn btn-primary rounded">Jenis</button> -->
-                        <button class="btn btn-primary dropdown-toggle" type="button" name="rent_for" id="rent_for" data-bs-toggle="dropdown" aria-expanded="false">Jenis</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Putra</a></li>
-                            <li><a class="dropdown-item" href="#">Putri</a></li>
-                            <li><a class="dropdown-item" href="#">Campur</a></li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <!-- <button type="submit" name="price" id="price" class="btn btn-primary rounded">Tipe</button> -->
-                        <button class="btn btn-primary dropdown-toggle" type="button" name="price" id="price" data-bs-toggle="dropdown" aria-expanded="false">Tipe</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Kos</a></li>
-                            <li><a class="dropdown-item" href="#">Kontrakan</a></li>
-                        </ul>
+                    <li>
+                        <select class="btn btn-primary form-select px-5 text-start" name="for">
+                            <option {{ request('for') == '' ? 'selected' : 'disable' }} value="">Disewakan Untuk</option>
+                            <option {{ request('for') == 'putra' ? 'selected' : '' }} value="putra">Putra</option>
+                            <option {{ request('for') == 'putri' ? 'selected' : '' }} value="putri">Putri</option>
+                            <option {{ request('for') == 'campur' ? 'selected' : '' }} value="campur">Campur</option>
+                        </select>
                     </li>
                 </ul>
             </div>
@@ -54,14 +54,15 @@
                             <div class="card-content">
                                 <div class="card-content-star">
                                     <i class="fa-regular fa-star"></i>
-                                    <h6 class="card-text browse-rating-text">Nilai Bintang</h6>
+                                    <h6 class="card-text browse-rating-text">{{ $property->rating }}</h6>
                                 </div>
                                 <div class="card-content-detail">
                                     <p class="card-text card-content-detail-name">{{ $property->title }}</p>
-                                    <p class="card-text card-content-detail-location">{{ $property->address }}</p>
+                                    <p class="card-text card-content-detail-location">{{ $property->district }} - {{ $property->city }} - {{ $property->province }}</p>
                                 </div>
                                 <div class="card-content-detail">
-                                    <p class="card-text card-content-detail-name">Rp {{ $property->price }} / bulan</p>
+                                    <p class="card-text card-content-detail-name">
+                                        <x-money amount="{{ $property->price }}" currency="IDR" convert /> / bulan</p>
                                 </div>
                             </div>
                         </div>
