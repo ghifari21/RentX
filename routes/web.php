@@ -44,7 +44,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/payment/{order:id}', [OrderController::class, 'payment']);
+Route::get('/payment/{order:id}', [OrderController::class, 'payment'])->middleware('auth');
 
 Route::put('/payment/{order:id}', [OrderController::class, 'paymentAccepted']);
 
@@ -66,25 +66,25 @@ Route::get('/buyers/history', function () {
 
 //BUYER
 #routing landing page/dashboard buyer
-Route::get('/dashboard', [DashboardBuyerController::class, 'index']);
+Route::get('/dashboard', [DashboardBuyerController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard/{user:username}/edit', [DashboardBuyerController::class, 'edit']);
+Route::get('/dashboard/{user:username}/edit', [DashboardBuyerController::class, 'edit'])->middleware('auth');
 
 Route::put('/dashboard/{user:username}', [DashboardBuyerController::class, 'update']);
 
-Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'viewChangePassword']);
+Route::get('/dashboard/change-password', [DashboardBuyerController::class, 'viewChangePassword'])->middleware('auth');
 
 Route::put('/dashboard/change-password/{user:username}', [DashboardBuyerController::class, 'changePassword']);
 
-Route::get('/dashboard/become-seller', [DashboardBuyerController::class, 'becomeSeller']);
+Route::get('/dashboard/become-seller', [DashboardBuyerController::class, 'becomeSeller'])->middleware('auth');
 
 Route::post('/dashboard/become-seller', [DashboardBuyerController::class, 'requestToAdmin']);
 
 # routing untuk halaman buyer Riview/Komentar
-Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index']);#untuk di halaman detail property
-Route::get('/buyers/review/dashboard/{order:id}',[ReviewController::class,'indexForDashboardBuyer']);#untuk di halaman dashboard buyer
+Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index'])->middleware('auth');#untuk di halaman detail property
+Route::get('/buyers/review/dashboard/{order:id}',[ReviewController::class,'indexForDashboardBuyer'])->middleware('auth');#untuk di halaman dashboard buyer
 
-Route::get('/buyers/review/dashboard/{order:id}');#lihat review
+Route::get('/buyers/review/dashboard/{order:id}')->middleware('auth');#lihat review
 Route::post('/buyers/review/{property:slug}',[ReviewController::class,'store']);
 Route::put('/buyers/review/{id}',[ReviewController::class,'update']);
 
@@ -115,46 +115,25 @@ Route::get('/seller/dashboard/change-password', [DashboardSellerController::clas
 
 Route::put('/seller/dashboard/change-password/{user:username}', [DashboardSellerController::class, 'changePassword'])->middleware('seller');
 
-#seller order action
-Route::post('/seller/orders/{order:id}', [DashboardSellerController::class, 'orderAction'])->middleware('seller');
-
 # permintaan sewa
-Route::get('/seller/orders',[DashboardSellerController::class, 'showOrder'])->middleware('seller');
+Route::get('/seller/dashboard/orders',[DashboardSellerController::class, 'showOrder'])->middleware('seller');
+
+#seller order action
+Route::post('/seller/dashboard/orders/{order:id}', [DashboardSellerController::class, 'orderAction'])->middleware('seller');
 
 # riwayat transaksi
 
-Route::get('/admin', function () {
-    return view('admin.dashboard', [
-        'title' => 'Admin',
-        'adminName' => 'Axel Eldrian'
-    ]);
-});
+// ADMIN AREA
+Route::get('/admin', [DashboardAdminController::class, 'index'])->middleware('admin');
 
-Route::get('/admin/daftarAdmin', function () {
-    return view('admin.daftarAdmin', [
-        'title' => 'Daftar Admin',
-        'adminName' => 'Axel Eldrian'
-    ]);
-});
+Route::get('/admin/daftarSeller', [DashboardAdminController::class, 'listSellers'])->middleware('admin');
 
-Route::get('/admin/daftarSeller', function () {
-    return view('admin.daftarSeller', [
-        'title' => 'Daftar Seller',
-        'adminName' => 'Axel Eldrian'
-    ]);
-});
+Route::get('/admin/daftarBuyer', [DashboardAdminController::class, 'listBuyers'])->middleware('admin');
 
-Route::get('/admin/daftarBuyer', function () {
-    return view('admin.daftarBuyer', [
-        'title' => 'Daftar Buyer',
-        'adminName' => 'Axel Eldrian'
-    ]);
-});
+Route::get('/admin/requestUpgrade', [DashboardAdminController::class, 'requestUpgrade'])->middleware('admin');
 
-Route::get('/admin/requestUpgrade', [DashboardAdminController::class, 'requestUpgrade']);
+Route::get('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'showRequest'])->middleware('admin');
 
-Route::get('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'showRequest']);
+Route::put('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'acceptRequest'])->middleware('admin');
 
-Route::put('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'acceptRequest']);
-
-Route::delete('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'rejectRequest']);
+Route::delete('/admin/requestUpgrade/{user:username}', [DashboardAdminController::class, 'rejectRequest'])->middleware('admin');
