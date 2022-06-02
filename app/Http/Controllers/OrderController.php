@@ -16,6 +16,11 @@ class OrderController extends Controller
         //validate data
         // dd($property);
 
+        $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        if ($seller->id === $property->seller_id) {
+            return back()->with('error', 'Tidak boleh melakukan ajukan order pada properti milik sendiri!');
+        }
+
         $validatedData = $request->validate([
             'check_in'=>'required',
             'duration'=>'required',
