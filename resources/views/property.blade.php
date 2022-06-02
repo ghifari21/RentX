@@ -3,7 +3,7 @@
 @section('main-content')
 <!-- navbar section -->
 @include('partials.navbar2')
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md">
             <p class="detail-product-title fw-bold fs-4">{{ $property->title }}</p>

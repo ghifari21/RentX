@@ -4,7 +4,7 @@
 <!-- navbar section -->
 @include('partials.navbar2')
 
-<div class="container">
+<div class="container mt-5">
   <div class="landing-page-search">
     <h4>Cari Kos / Kontrakan</h4>
 
