@@ -6,27 +6,39 @@
 
 <div class="container mt-5">
     <div class="">
-        <form action="/search" class="form-inline">
-            <input class="form-control mb-2 mr-sm-2" id="search-input" name="search"
-                placeholder="Cari kos yang anda inginkan">
-            <button type="submit" class="btn btn-primary mb-2">Cari</button>
+        <form action="/search" class="gap-4">
+            <div class="form-inline">
+                <input class="form-control mb-2 mr-sm-2" id="search-input" name="search" placeholder="Cari kos yang anda inginkan">
+                <button type="submit" class="btn btn-primary mb-2">Cari</button>
+            </div>
+            <div class="form-inline">
+                <ul class="list-group list-group-horizontal gap-2" style="list-style: none; border: none;">
+                    <li class="">
+                        <button type="submit" name="recommendation" id="recommendation" class="btn btn-primary rounded">Rekomendasi</button>
+                    </li>
+                    <li class="">
+                        <button type="submit" name="price" id="price" class="btn btn-primary rounded">Harga</button>
+                    </li>
+                    <li class="">
+                        <!-- <button type="submit" name="rent_for" id="rent_for" class="btn btn-primary rounded">Jenis</button> -->
+                        <button class="btn btn-primary dropdown-toggle" type="button" name="rent_for" id="rent_for" data-bs-toggle="dropdown" aria-expanded="false">Jenis</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Putra</a></li>
+                            <li><a class="dropdown-item" href="#">Putri</a></li>
+                            <li><a class="dropdown-item" href="#">Campur</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <!-- <button type="submit" name="price" id="price" class="btn btn-primary rounded">Tipe</button> -->
+                        <button class="btn btn-primary dropdown-toggle" type="button" name="price" id="price" data-bs-toggle="dropdown" aria-expanded="false">Tipe</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Kos</a></li>
+                            <li><a class="dropdown-item" href="#">Kontrakan</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </form>
-    </div>
-    <div class="filter filter-outer">
-        <ul class="filter filter-inner">
-            <a href="#">
-                <li class="filter-item">Rekomendasi</li>
-            </a>
-            <a href="#">
-                <li class="filter-item">Harga</li>
-            </a>
-            <a href="#">
-                <li class="filter-item">Jenis</li>
-            </a>
-            <a href="#">
-                <li class="filter-item">Tipe</li>
-            </a>
-        </ul>
     </div>
 
     <div class="container mt-3">
