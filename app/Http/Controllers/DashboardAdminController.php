@@ -49,7 +49,8 @@ class DashboardAdminController extends Controller
     public function showRequest(User $user) {
         return view('admin.showRequest', [
             'title' => 'Request Upgrade',
-            'requester' => Seller::firstWhere('user_id', $user->id)
+            'requester' => Seller::firstWhere('user_id', $user->id),
+            'admin' => auth()->user()
         ]);
     }
 
