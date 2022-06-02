@@ -11,23 +11,25 @@
                         <tr style="background-color: #BFBFBF;">
                             <th class="col">No</th>
                             <th class="col">Nama</th>
-                            <th class="col">No. Telepon</th>
-                            <th class="col">Email</th>
                             <th class="col">Username</th>
-                            <th class="col">Password</th>
+                            <th class="col">Email</th>
+                            <th class="col">No. Telepon</th>
+                            <th class="col">Alamat</th>
                             <th class="col">No. KTP</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Johnny Sins</td>
-                            <td>085232242424</td>
-                            <td>Jl. Hasan Sadikin</td>
-                            <td>john69@gmail.com</td>
-                            <td>john69</td>
-                            <td>32111232341242</td>
-                        </tr>
+                        @foreach ($sellers as $seller)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $seller->user->name }}</td>
+                                <td>{{ $seller->user->username }}</td>
+                                <td>{{ $seller->user->email }}</td>
+                                <td>{{ $seller->phone }}</td>
+                                <td>{{ $seller->address }}</td>
+                                <td>{{ $seller->nik }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -2,8 +2,11 @@
     <!-- identity section -->
     <div class="row mb-3">
         <div class="col">
-            <img src="{{ asset('/storage/' . $seller->photo_profile) }}"
-                class="rounded img-fluid" alt="Avatar">
+            @if ($seller->photo_profile)
+                <img src="{{ asset('storage/' . $seller->photo_profile) }}" class="rounded img-fluid" alt="Avatar">
+            @else
+                <img src="/img/blank-profile-picture.png" class="rounded img-fluid" alt="Avatar">
+            @endif
         </div>
         <div class="col">
             <div class="row mt-1">
@@ -31,7 +34,7 @@
             <i class="fa-solid fa-clock-rotate-left"></i>
         </div>
         <div class="col">
-            <a href="/seller/orders" class="text-black" style="text-decoration: none;">
+            <a href="/seller/dashboard/orders" class="text-black" style="text-decoration: none;">
                 <p>Permintaan Sewa</p>
             </a>
         </div>
@@ -51,7 +54,7 @@
             <i class="fa-solid fa-pen-to-square"></i>
         </div>
         <div class="col">
-            <a href="/seller/dashboard/change-password" class="text-black" style="text-decoration: none;"><p>Change Password</p></a>
+            <a href="/seller/dashboard/change-password" class="text-black" style="text-decoration: none;"><p>Ganti Password</p></a>
         </div>
     </div>
 </div>

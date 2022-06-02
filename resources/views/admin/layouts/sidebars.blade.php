@@ -8,9 +8,6 @@
             <a href="/admin" class="nav-link text-white">Home</a>
         </li>
         <li>
-            <a href="/admin/daftarAdmin" class="nav-link text-white">Daftar Admin</a>
-        </li>
-        <li>
             <a href="/admin/daftarSeller" class="nav-link text-white">Daftar Seller</a>
         </li>
         <li>
@@ -24,7 +21,7 @@
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
-            {{-- <strong>{{ $adminName }}</strong> --}}
+            <strong>{{ $admin->name }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="/">Back to Home</a></li>
