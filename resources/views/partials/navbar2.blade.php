@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md mb-5 py-3 px-5" style="background-color: #2055CB;">
+<nav class="navbar navbar-expand-md py-3 px-5" style="background-color: #2055CB;">
     <div class="container-fluid">
 		<div class="logo">
-			<a class="navbar-brand" href="/"><img src="" alt="RentX" class="ms-4"></a>
+			<a class="navbar-brand" href="/"><img src="/img/logo.png" alt="RentX" class="ms-4" height="30"></a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbarsExample04">
