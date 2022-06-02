@@ -18,7 +18,7 @@ class DashboardBuyerController extends Controller
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
         return view('buyers.index', [
             'title' => 'Dashboard',
-            'orders' => Order::where('buyer_id', $buyer->id)->get(),
+            'orders' => Order::where([['check_out', '>', today()], ['buyer_id', $buyer->id]])->get(),
             'optionName' => 'Kos Saya',
             'seller' => $seller,
             'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
@@ -126,11 +126,12 @@ class DashboardBuyerController extends Controller
     }
 
     public function history() {
+        $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
         return view('buyers.history', [
             'title' => 'Riwayat Kos',
-            'buyer' => Buyer::firstWhere('user_id', auth()->user()->id),
+            'buyer' => $buyer,
             'seller' => Seller::firstWhere('user_id', auth()->user()->id),
-            'orders' => Order::where('check_out', '<', today())
+            'orders' => Order::where([['check_out', '<', today()], ['buyer_id', $buyer->id]])->get()
         ]);
     }
 }

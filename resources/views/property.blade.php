@@ -91,8 +91,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <p class="fs-5">Harga Sewa Per Durasi</p>
-                        <strong class="fs-5" id="totalPrice">Rp 0 / Durasi</strong>
+                        <p class="fs-5">Total Harga</p>
+                        <strong class="fs-5 totalPrice">Rp 0</strong>
                     </div>
 
                     <!-- <div class="d-flex justify-content-between">
@@ -250,7 +250,7 @@
 <script type="text/javascript">
     var price = {{ $property->price }};
     $('#duration').on('change', function() {
-        $('#totalPrice').html("Rp " + (price*this.value) + " / Durasi");
+        $('.totalPrice').html("Rp " + (price*this.value));
     });
 </script>
 

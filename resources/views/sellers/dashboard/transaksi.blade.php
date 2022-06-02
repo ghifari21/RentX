@@ -28,11 +28,11 @@
                             <p class="">{{$order->check_in}} - {{$order->check_out}}</p>
                         </div>
                         <div class="row">
-                            <p class="">Total Payment: {{$order->total_payment}}</p>
-                            <form action="/seller/orders/{{$order->id}}" method="post">
+                            <p class="">Total Payment: <x-money amount="{{$order->total_payment}}" currency="IDR" convert/></p>
+                            <form action="/seller/dashboard/orders/{{$order->id}}" method="post">
                                 @csrf
-                                <button class="btn btn-info" name="status" value="accepted">Diterima</button>
-                                <button class="btn btn-danger" name="status" value="rejected">Ditolak</button>
+                                <button class="btn btn-info" type="submit" name="status" value="accepted">Diterima</button>
+                                <button class="btn btn-danger" type="submit" name="status" value="rejected">Ditolak</button>
                             </form>
                         </div>
                     </div>

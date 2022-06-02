@@ -45,6 +45,7 @@
             {{-- <button class="dropdown-item btn-detail" data-target="#detailBiblio{{ $item->id }}"
                 data-toggle="modal">Detail</button> --}}
             {{-- Modal lihat Review --}}
+            @if ($order->review)
             <div class="modal fade" id="lihatReview{{$order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -105,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
             </div>
         </div>

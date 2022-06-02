@@ -17,15 +17,18 @@ class OrderController extends Controller
         // dd($property);
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
-        if ($seller->id === $property->seller_id) {
-            return back()->with('error', 'Tidak boleh melakukan ajukan order pada properti milik sendiri!');
+        if ($seller) {
+            if ($seller->id === $property->seller_id) {
+                return back()->with('error', 'Tidak boleh melakukan ajukan order pada properti milik sendiri!');
+            }
         }
 
         $validatedData = $request->validate([
             'check_in'=>'required',
             'duration'=>'required',
-            'total_payment'=>'required',
         ]);
+
+        $validatedData['total_payment'] = $validatedData['duration'] * $property->price;
 
 
         $date_interval = $validatedData['duration'] . ' month';

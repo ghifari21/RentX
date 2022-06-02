@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\OrderController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -72,7 +73,7 @@ Route::post('/dashboard/become-seller', [DashboardBuyerController::class, 'reque
 Route::get('/buyers/review/{property:slug}',[ReviewController::class,'index'])->middleware('auth');#untuk di halaman detail property
 Route::get('/buyers/review/dashboard/{order:id}',[ReviewController::class,'indexForDashboardBuyer'])->middleware('auth');#untuk di halaman dashboard buyer
 
-Route::get('/buyers/review/dashboard/{order:id}')->middleware('auth');#lihat review
+// Route::get('/buyers/review/dashboard/{order:id}', [ReviewController::class, 'indexForDashboardBuyer'])->middleware('auth');#lihat review
 Route::post('/buyers/review/{property:slug}',[ReviewController::class,'store']);
 Route::put('/buyers/review/{id}',[ReviewController::class,'update']);
 
