@@ -18,6 +18,18 @@ class Property extends Model
                 $query->where('title', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%')->orWhere('address', 'like', '%' . $search . '%')->orWhere('province', 'like', '%' . $search . '%')->orWhere('city', 'like', '%' . $search . '%')->orWhere('district', 'like', '%' . $search . '%');
             });
         });
+
+        $query->when($filters['type'] ?? false, function($query, $type) {
+            return $query->where(function($query) use ($type) {
+                $query->where('property_type', $type);
+            });
+        });
+
+        $query->when($filters['for'] ?? false, function($query, $for) {
+            return $query->where(function($query) use ($for) {
+                $query->where('rent_for', $for);
+            });
+        });
     }
 
     // seller relation

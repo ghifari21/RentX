@@ -69,7 +69,6 @@ class DashboardSellerController extends Controller
         ]);
         // $validatedData['slug'] = 'test-dummy';
         // $validatedData['property_type'] = 'kosan';
-
         $validatedData['photo_1'] = $request->file('photo_1')->store('property-images');
         $validatedData['photo_2'] = $request->file('photo_2')->store('property-images');
         $validatedData['photo_3'] = $request->file('photo_3')->store('property-images');
