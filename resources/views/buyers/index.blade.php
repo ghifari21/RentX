@@ -35,17 +35,16 @@
                         @if ($order->status == "accepted")
                         <a class="btn btn-success mb-0" href="/payment/{{ $order->id }}">Bayar</a>
                         @else
-                        <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
+                        <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-0" onclick="return confirm('Apakah anda yakin?')">Berhenti Sewa</button></a>
                         @endif
                     </div>
                     <div class="row">
                         @if ($order->status == "paid")
-                        <a class="btn btn-success mb-0" href="/buyers/review/dashboard/{{ $order->id }}">Riview</a>
+                        <a class="btn btn-success mb-0" href="/buyers/review/dashboard/{{ $order->id }}">Review</a>
                         @elseif($order->status == "reviewed")
                         <button class="btn btn-success mb-0" data-bs-target="#lihatReview{{$order->id}}"
                             data-bs-toggle="modal">Lihat
-                            Riview</button>
-
+                            Review</button>
                         @endif
                     </div>
                 </div>
