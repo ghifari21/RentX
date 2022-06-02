@@ -4,7 +4,7 @@
 @include('partials.navbar2')
 
 <!-- container section -->
-<div class="container" style="padding-left: 10rem; padding-right: 10rem;">
+<div class="container mt-5" style="padding-left: 10rem; padding-right: 10rem;">
     @if (session()->has('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
@@ -45,4 +45,4 @@
 </div>
 
 <!-- footer section  -->
-@include('partials.footer')
+@include('partials.footer2')
