@@ -12,25 +12,54 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function index(Property $property){
-        //apakah buyer sudah melakukan sewa sebelumnya
-        $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
-        $order = Order::where([['property_id','=',$property->id],['buyer_id','=',$buyer->id],['status','=','paid']])->first();
-        $is_order= (is_null($order)) ? 0 : $order->count();
-        //apakah buyer pernah rivew sebelumnya
-        if($is_order){
-            $order_id=$order->id;
-            $is_review = Review::where([['order_id','=',$order_id],['property_id','=',$property->id],['buyer_id','=',$buyer->id]])->count();
+    public static function checkReview($property){
+        //hanya buyer yang bisa nambah ulasan
+        if(Buyer::where('user_id',auth()->user()->id)->exists()){
+            //apakah buyer sudah melakukan sewa sebelumnya
+            $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
+            $order = Order::where([['property_id','=',$property->id],['buyer_id','=',$buyer->id],['status','=','paid']])->first();
+            $is_order= (is_null($order)) ? 0 : $order->count();
+            //apakah buyer pernah riview sebelumnya
+            if($is_order){
+                $order_id=$order->id;
+                $is_review = Review::where([['order_id','=',$order_id],['property_id','=',$property->id],['buyer_id','=',$buyer->id]])->count();
+            }
+            if($is_order && !$is_review){
+                return true;
+            }else if(!$is_order || $is_review){
+                return false;
+            }
+        }else{
+            return false;
         }
-        if($is_order && !$is_review){
+        
+    }
+    
+    // public function index(Property $property){
+    //     //apakah buyer sudah melakukan sewa sebelumnya
+    //     $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
+    //     $order = Order::where([['property_id','=',$property->id],['buyer_id','=',$buyer->id],['status','=','paid']])->first();
+    //     $is_order= (is_null($order)) ? 0 : $order->count();
+    //     //apakah buyer pernah rivew sebelumnya
+    //     if($is_order){
+    //         $order_id=$order->id;
+    //         $is_review = Review::where([['order_id','=',$order_id],['property_id','=',$property->id],['buyer_id','=',$buyer->id]])->count();
+    //     }
+    //     if($is_order && !$is_review){
+    //         return view('comment.index',[
+    //             'title' => "Update",
+    //             'property' => $property
+    //         ]);
+    //     }else if(!$is_order || $is_review){
+    //         //error message
+    //         return "error";
+    //     }
+    // }
+    public function index(Property $property){
             return view('comment.index',[
                 'title' => "Update",
                 'property' => $property
             ]);
-        }else if(!$is_order || $is_review){
-            //error message
-            return "error";
-        }
     }
 
     public function store(Request $request,Property $property){

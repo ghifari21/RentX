@@ -17,7 +17,7 @@ class BuyerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
         ];
     }
 }
