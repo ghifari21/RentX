@@ -2,11 +2,6 @@
 
 @section('container')
 <div class="row">
-    @if (session()->has('success'))
-    <div class="alert alert-success col-lg-8">
-        {{ session('success') }}
-    </div>
-    @endif
     <!-- left side section -->
         @include('sellers.layouts.sidebar')
 

@@ -12,15 +12,16 @@
 </head>
 <body>
     <!-- header section -->
-    @include('partials.navbar')
+    @include('partials.navbar2')
 
     @if (session()->has('success'))
-    <div class="alert alert-success col-lg-8">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <!-- container section -->
-    <div class="container px-5 mb-5">
+    <div class="container px-5 mb-5 mt-4">
         @yield('main-content')
     </div>
 

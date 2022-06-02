@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 <!-- header section -->
-@include('partials.navbar')
+@include('partials.navbar2')
 
 <!-- container section -->
-<div class="container">
+<div class="container mt-5">
     <form method="post" action="/seller/dashboard/profle/{{ auth()->user()->username }}" enctype="multipart/form-data">
         @method('put')
         @csrf

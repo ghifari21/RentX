@@ -4,7 +4,7 @@
 <!-- navbar section -->
 @include('partials.navbar2')
 
-<div class="container">
+<div class="container mt-5">
     <div class="">
         <form action="/search" class="form-inline">
             <input class="form-control mb-2 mr-sm-2" id="search-input" name="search"
