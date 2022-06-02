@@ -79,9 +79,4 @@
     </div>
 </div>
 
-<!-- divider -->
-<div class="row" style="background-color:white; height: 150px; width: 10px;"></div>
-
-<!-- footer section  -->
-@include('partials.footer2')
 @endsection
