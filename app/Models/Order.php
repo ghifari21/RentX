@@ -10,10 +10,11 @@ class Order extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['buyer', 'seller', 'property'];
 
     // review relation
     public function review(){
-        return $this->hasone(Review::class);
+        return $this->hasOne(Review::class);
     }
 
     // buyer relation
