@@ -65,30 +65,34 @@
             </div>
         </div>
         <div class="col-md">
-            <div class="container detail-container mb-3">
+            <div class="container detail-container mb-3 border border-secondary rounded p-3" >
                 <p class="text-larger">Rp {{ $property->price }} / Bulan</p>
                 <form action="/buyers/order/{{ $property->slug }}" method="post">
                     @csrf
                     <div class="form-group">
                         <div class="mb-2">
 
-                            <label class="text-larger" for="duration">Durasi Sewa</label>
-                            <input type="number" class="form-control" name="duration" id="duration">
+                            <label class="fs-5" for="duration">Durasi Sewa</label>
+                            {{-- <input type="number" class="form-control" name="duration" id="duration"> --}}
 
-                            <!-- <select class="form-select" name="duration" id="duration">
-                                <option value="">Pilih Durasi Sewa</option>
-                            </select> -->
+                            <select class="form-select" name="duration" id="duration">
+                                <option value="0">Pilih Durasi Sewa</option>
+                                <option value="1">1 Bulan</option>
+                                <option value="3">3 Bulan</option>
+                                <option value="6">6 Bulan</option>
+                                <option value="12">12 Bulan</option>
+                            </select>
                         </div>
 
                         <div class="mb-2">
-                            <label class="text-larger" for="checkIn">Pilih Waktu Masuk</label>
+                            <label class="fs-5" for="checkIn">Pilih Waktu Masuk</label>
                             <input type="date" class="form-control" name="check_in" id="checkIn">
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <p class="text-larger">Harga Sewa Per Durasi</p>
-                        <p class="text-larger">Rp {{ $property->price }} / Durasi</p>
+                        <p class="fs-5">Harga Sewa Per Durasi</p>
+                        <strong class="fs-5" id="totalPrice">Rp 0 / Durasi</strong>
                     </div>
 
                     <!-- <div class="d-flex justify-content-between">
@@ -102,13 +106,13 @@
             </div>
             </form>
 
-            <div class="container detail-container">
-                <p class="text-larger mb-auto">Profil Pemilik</p>
+            <div class="container detail-container border border-secondary rounded p-3">
+                <p class="mb-auto fs-5">Profil Pemilik</p>
 
                 <div class="d-flex align-items-center">
-                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
+                    <i class="iconify detail-profile-icon fs-1" data-icon="healthicons:ui-user-profile"></i>
                     <div class="container">
-                        <p class="text-larger mb-auto">{{ $property->seller->user->name }}</p>
+                        <p class="mb-auto fs-3">{{ $property->seller->user->name }}</p>
                     </div>
                 </div>
             </div>
@@ -118,6 +122,17 @@
     <div class="row mt-4">
         <h2>Deskripsi</h2>
         <div class="container detail-container border border-secondary rounded p-2">
+            <div class="row">
+                <div class="col">
+                    <p class=""><strong>Total Kamar:</strong> {{ $property->total_room }}<p>
+                    <p class=""><strong>Kamar Tersedia:</strong> {{ $property->available_room }}<p>
+                </div>
+                <div class="col">
+                    <p class=""><strong>Panjang Kamar:</strong> {{ $property->room_length }} m</p>
+                    <p class=""><strong>Lebar Kamar:</strong> {{ $property->room_width }} m</p>
+                </div>
+            </div>
+            <hr>
             {{ $property->description }}
         </div>
     </div>
@@ -231,6 +246,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var price = {{ $property->price }};
+    $('#duration').on('change', function() {
+        $('#totalPrice').html("Rp " + (price*this.value) + " / Durasi");
+    });
+</script>
 
 <!-- footer section  -->
 @include('partials.footer2')
