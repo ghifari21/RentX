@@ -2,10 +2,10 @@
 
 @section('main-content')
 <!-- navbar section -->
-@include('partials.navbar')
+@include('partials.navbar2')
 <link href="css/star-rating.css" rel="stylesheet">
 
-<div class="container p-3" style="width: 50%;">
+<div class="container p-3 mt-4" style="width: 50%;">
     <h1 class="text-center">Komentar</h1>
     <div class="comment border rounded p-3" style="background-color: #E7F9FD;">
         <form action="/buyers/review/{{$property->slug}}" method="post">
