@@ -10,25 +10,24 @@
             <div class="row">
                 <p class="fw-bold fs-4">{{ $order->property->title }}</p>
                 <p class="fs-5">{{ $order->property->address }}</p>
-                <p>Per Bulan : Rp.800.000</p>
             </div>
             <div class="row">
                 <div class="col">
                     <hr>
                     <p>Mulai Sewa : </p>
-                    <h6>26 May 2022</h6>
+                    <h6>{{ \Carbon\Carbon::parse($order->check_in)->toFormattedDateString() }}</h6>
                     <hr>
                 </div>
                 <div class="col">
                     <hr>
                     <p>Akhir Sewa : </p>
-                    <h6>26 May 2023</h6>
+                    <h6>{{ \Carbon\Carbon::parse($order->check_out)->toFormattedDateString() }}</h6>
                     <hr>
                 </div>
                 <div class="col">
                     <hr>
                     <p>Durasi Sewa : </p>
-                    <h6>12 Bulan</h6>
+                    <h6>{{ $order->duration }} Bulan</h6>
                     <hr>
                 </div>
             </div>
@@ -55,10 +54,10 @@
                     <p class="fw-bold fs-5">Total Pembayaran :</p>
                 </div>
                 <div class="col">
-                    <p class="fs-5">Rp. {{ $order->total_payment }}</p>
+                    <p class="fs-5"><x-money amount="{{ $order->total_payment }}" currency="IDR" convert/></p>
                 </div>
             </div>
-            <form action="{{ /payment/{{ $order->id }} }}" method="POST">
+            <form action="/payment/{{ $order->id }}" method="POST">
                 @method('put')
                 @csrf
                 <input type="hidden" name="status" value="paid">

@@ -69,7 +69,7 @@ class ReviewController extends Controller
             'comment'=>'required|max:500',
             'rating'=>'required',
         ]);
-        
+
         //get order id
         $buyer = Buyer::firstWhere('user_id', auth()->user()->id);
         $order=Order::where([['property_id','=',$property->id],['buyer_id','=',$buyer->id],['status','=','paid']])->first();
@@ -82,30 +82,35 @@ class ReviewController extends Controller
         $order->status="reviewed";
         $order->save();
 
-        //proses memasukan nilai rating dan total_reviewer ke tabel properti
-        $old_total_reviewer=$property->total_reviewer;
-        //kali rating dan total_review di tabel property
-        $old_rating_property=($property->rating)*$old_total_reviewer;
-        //new daftar
-        $new_rating_property=($old_rating_property+$validatedData['rating'])/($old_total_reviewer+1);
-        $new_total_reviewer=$property->total_reviewer+1;
-        //dd($old_total_reviewer,$old_rating_property,$new_rating_property,$new_total_reviewer);
-        
-        //masukin ke tabel property
-        $property->total_reviewer=$new_total_reviewer;
-        $property->rating=$new_rating_property;
+        if ($property->rating != 0 && $property->total_reviewer != 0) {
+            //proses memasukan nilai rating dan total_reviewer ke tabel properti
+            $old_total_reviewer=$property->total_reviewer;
+            //kali rating dan total_review di tabel property
+            $old_rating_property=($property->rating)*$old_total_reviewer;
+            //new daftar
+            $new_rating_property=($old_rating_property+$validatedData['rating'])/($old_total_reviewer+1);
+            $new_total_reviewer=$property->total_reviewer+1;
+            //dd($old_total_reviewer,$old_rating_property,$new_rating_property,$new_total_reviewer);
+
+            //masukin ke tabel property
+            $property->total_reviewer=$new_total_reviewer;
+            $property->rating=$new_rating_property;
+        } else {
+            $property->rating = $validatedData['rating'];
+            $property->total_reviewer = 1;
+        }
         //save tabel property
         $property->save();
 
         //create
         Review::create($validatedData);
 
-        return redirect('/dashboard')->with('success', 'Order has been sent,wait seller confirmation!');
+        return redirect('/dashboard')->with('success', 'Telah berhasil menambahkan ulasan.');
     }
 
     public function indexForDashboardBuyer(Order $order){
         $property=Property::firstWhere('id',$order->property_id );
-        return view('comment',[
+        return view('comment.index',[
             'title' => "Update",
             'property' => $property
         ]);

@@ -1,14 +1,14 @@
 @extends('buyers.layouts.main')
 
 @section('main-content')
-    <div class="row">
-        <!-- left side section -->
-        @include('buyers.layouts.sidebar')
+<div class="row">
+    <!-- left side section -->
+    @include('buyers.layouts.sidebar')
 
-        <!-- right side section -->
-        <div class="col p-3">
-            <h1 class="fs-3 fw-bold mb-3">Riwayat Kos</h1>
-            <div class="border border-secondary rounded px-4 py-3" style="overflow-y: auto; height: 61vh">
+    <!-- right side section -->
+    <div class="col p-3">
+        <h1 class="fs-3 fw-bold mb-3">Riwayat Kos</h1>
+        <div class="border border-secondary rounded px-4 py-3" style="overflow-y: auto; height: 61vh">
             @foreach ($orders as $order)
             <div class="row border border-secondary rounded p-3 mb-3">
                 <div class="col">
@@ -22,13 +22,13 @@
                 </div>
                 <div class="col-4 d-flex align-items-end flex-column">
                     <div class="row">
-                        <p class="">Durasi: {{ $order->duration }}</p>
+                        <p class="">Durasi: {{ $order->duration }} Bulan</p>
                     </div>
                     <div class="row invisible">
                         <p>Invisible</p>
                     </div>
                     <div class="row">
-                        {{$order->status}}
+                        {{$order->status}}order idnya{{$order->id}}
                     </div>
                     <div class="row">
                         @if ($order->status == "paid")
@@ -45,6 +45,7 @@
             {{-- <button class="dropdown-item btn-detail" data-target="#detailBiblio{{ $item->id }}"
                 data-toggle="modal">Detail</button> --}}
             {{-- Modal lihat Review --}}
+            @if ($order->review)
             <div class="modal fade" id="lihatReview{{$order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -92,7 +93,7 @@
                                             </option>
                                         </select>
                                         <br>
-                                        <button type='submit' class="btn btn-primary mt-2">Tambah</button>
+                                        <button type='submit' class="btn btn-primary mt-2">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -105,8 +106,9 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
-            </div>
         </div>
     </div>
+</div>
 @endsection

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardSellerController extends Controller
 {
@@ -55,25 +56,32 @@ class DashboardSellerController extends Controller
             'title' => 'required|max:150',
             'slug' => 'required|unique:properties',
             'property_type' =>'required',
-            'is_available' => 'required',
+            'rent_for' => 'required',
+            'total_room' => 'required',
+            'available_room' => 'required',
+            'room_length' => 'required',
+            'room_width' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'district' => 'required',
             'address' =>'required|max:255',
-            'link_location' =>'required|max:150' ,
+            'link_location' =>'required' ,
             'price' => 'required',
-            'photo_1' => 'required|image|file|max:2048',
-            'photo_2' => 'required|image|file|max:2048',
-            'photo_3' => 'required|image|file|max:2048',
-            'photo_4' => 'required|image|file|max:2048',
-            'photo_5' => 'required|image|file|max:2048',
+            'photo_1' => 'required|image|file|max:5120',
+            'photo_2' => 'required|image|file|max:5120',
+            'photo_3' => 'required|image|file|max:5120',
+            'photo_4' => 'required|image|file|max:5120',
+            'photo_5' => 'required|image|file|max:5120',
             'description' => 'required|max:500',
-            'property_type' => 'required'
         ]);
-        // $validatedData['slug'] = 'test-dummy';
-        // $validatedData['property_type'] = 'kosan';
         $validatedData['photo_1'] = $request->file('photo_1')->store('property-images');
         $validatedData['photo_2'] = $request->file('photo_2')->store('property-images');
         $validatedData['photo_3'] = $request->file('photo_3')->store('property-images');
         $validatedData['photo_4'] = $request->file('photo_4')->store('property-images');
         $validatedData['photo_5'] = $request->file('photo_5')->store('property-images');
+
+        $validatedData['rating'] = 0;
+        $validatedData['total_reviewer'] = 0;
 
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
         $validatedData['seller_id'] = $seller->id;
@@ -107,7 +115,6 @@ class DashboardSellerController extends Controller
 
     public function showTransaction()
     {
-
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
         $orders = Order::with(['seller', 'buyer', 'property']);
         $orders = $orders->where([['seller_id','=',$seller->id],['status','=','pending']])->get();
@@ -170,42 +177,69 @@ class DashboardSellerController extends Controller
         // dd($request);
         $rules = [
             'title' => 'required|max:150',
-            // 'slug' => 'required|unique:properties',
-            // 'property_type' =>'required',
-            // 'is_available' => 'required',
+            'property_type' =>'required',
+            'rent_for' => 'required',
+            'total_room' => 'required',
+            'available_room' => 'required',
+            'room_length' => 'required',
+            'room_width' => 'required',
+            'province' => 'required',
+            'city' => 'required',
+            'district' => 'required',
             'address' =>'required|max:255',
-            'link_location' =>'required|max:150' ,
+            'link_location' =>'required' ,
             'price' => 'required',
-            'photo_1' => 'required',
-            'photo_2' => 'required',
-            'photo_3' => 'required',
-            'photo_4' => 'required',
-            'photo_5' => 'required',
-            // 'photo_1' => 'image|file|max:2048',
-            // 'photo_2' => 'image|file|max:2048',
-            // 'photo_3' => 'image|file|max:2048',
-            // 'photo_4' => 'image|file|max:2048',
-            // 'photo_5' => 'image|file|max:2048',
+            'photo_1' => 'image|file|max:5120',
+            'photo_2' => 'image|file|max:5120',
+            'photo_3' => 'image|file|max:5120',
+            'photo_4' => 'image|file|max:5120',
+            'photo_5' => 'image|file|max:5120',
             'description' => 'required|max:500',
         ];
+
+        if ($request->slug != $property->slug) {
+            $rules['slug'] = 'required|unique:properties';
+        } else {
+            $rules['slug'] = 'required';
+        }
 
         // dd($validatedData);
 
         $validatedData = $request->validate($rules);
 
-        $validatedData['slug'] = 'test-dummy';
-        $validatedData['property_type'] = 'kosan';
+        if ($request->photo_1) {
+            if ($request->photo_1 != $property->photo_1) {
+                Storage::delete($property->photo_1);
+                $validatedData['photo_1'] = $request->file('photo_1')->store('property-images');
+            }
+        }
+        if ($request->photo_2) {
+            if ($request->photo_2 != $property->photo_2) {
+                Storage::delete($property->photo_2);
+                $validatedData['photo_2'] = $request->file('photo_2')->store('property-images');
+            }
+        }
+        if ($request->photo_3) {
+            if ($request->photo_3 != $property->photo_3) {
+                Storage::delete($property->photo_3);
+                $validatedData['photo_3'] = $request->file('photo_3')->store('property-images');
+            }
+        }
+        if ($request->photo_4) {
+            if ($request->photo_4 != $property->photo_4) {
+                Storage::delete($property->photo_4);
+                $validatedData['photo_4'] = $request->file('photo_4')->store('property-images');
+            }
+        }
+        if ($request->photo_5) {
+            if ($request->photo_5 != $property->photo_5) {
+                Storage::delete($property->photo_5);
+                $validatedData['photo_5'] = $request->file('photo_5')->store('property-images');
+            }
+        }
 
-        // $validatedData['photo_1'] = $request->file('photo_1')->store('post-images');
-        // $validatedData['photo_2'] = $request->file('photo_2')->store('post-images');
-        // $validatedData['photo_3'] = $request->file('photo_3')->store('post-images');
-        // $validatedData['photo_4'] = $request->file('photo_4')->store('post-images');
-        // $validatedData['photo_5'] = $request->file('photo_5')->store('post-images');
-
-        $seller = Seller::firstWhere('user_id', auth()->user()->id);
-        $validatedData['seller_id'] = $seller->id;
-
-        // dd($validatedData);
+        // $seller = Seller::firstWhere('user_id', auth()->user()->id);
+        // $validatedData['seller_id'] = $seller->id;
 
 
         Property::where('id', $property->id)->update($validatedData);
@@ -313,5 +347,11 @@ class DashboardSellerController extends Controller
             'orders' => Order::where('seller_id', $seller->id)->get(),
             'optionName' => 'Riwayat Transaksi',
         ]);
+    }
+
+    public function checkSlug(Request $request) {
+        $slug = SlugService::createSlug(Property::class, 'slug', $request->title);
+
+        return response()->json(['slug' => $slug]);
     }
 }

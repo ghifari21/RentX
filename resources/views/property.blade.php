@@ -37,19 +37,19 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ $property->photo_1 }}" class="d-block w-100">
+                        <img src="{{ asset('storage/' . $property->photo_1) }}" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $property->photo_2 }}" class="d-block w-100">
+                        <img src="{{ asset('storage/' . $property->photo_2) }}" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $property->photo_3 }}" class="d-block w-100">
+                        <img src="{{ asset('storage/' . $property->photo_3) }}" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $property->photo_4 }}" class="d-block w-100">
+                        <img src="{{ asset('storage/' . $property->photo_4) }}" class="d-block w-100">
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ $property->photo_5 }}" class="d-block w-100">
+                        <img src="{{ asset('storage/' . $property->photo_5) }}" class="d-block w-100">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
@@ -91,8 +91,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <p class="fs-5">Harga Sewa Per Durasi</p>
-                        <strong class="fs-5" id="totalPrice">Rp 0 / Durasi</strong>
+                        <p class="fs-5">Total Harga</p>
+                        <strong class="fs-5 totalPrice">Rp 0</strong>
                     </div>
 
                     <!-- <div class="d-flex justify-content-between">
@@ -207,14 +207,15 @@
                         <div class="row d-flex justify-content-evenly">
                             @foreach ($properties->take(5) as $p)
                             <div class="col-md-2 mb-3">
-                                <div class="card">
-                                    <img src="{{ $p->photo_1 }}" class="img-fluid" alt="House">
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $p->title }}</p>
-                                        <p class="card-text">alamat</p>
-                                        <span class="fa fa-star star-checked">{{$p->rating}}</span>
+                                <a href="/property/{{ $p->slug }}" class="text-black" style="text-decoration: none;">
+                                    <div class="card">
+                                        <img src="{{ asset('storage/' . $p->photo_1) }}" class="img-fluid" alt="House">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $p->title }}</p>
+                                            <span class="fa fa-star star-checked">{{$p->rating}}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             @endforeach
                         </div>
@@ -223,13 +224,15 @@
                         <div class="row d-flex justify-content-evenly">
                             @foreach ($properties->skip(5) as $p)
                             <div class="col-md-2 mb-3">
-                                <div class="card">
-                                    <img src="{{ $p->photo_1 }}" class="img-fluid" alt="House">
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $p->title }}</p>
-                                        <span class="fa fa-star star-checked">{{$p->rating}}</span>
+                                <a href="/property/{{ $p->slug }}" class="text-black" style="text-decoration: none;">
+                                    <div class="card">
+                                        <img src="{{ asset('storage/' . $p->photo_1) }}" class="img-fluid" alt="House">
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $p->title }}</p>
+                                            <span class="fa fa-star star-checked">{{$p->rating}}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             @endforeach
                         </div>
@@ -250,7 +253,7 @@
 <script type="text/javascript">
     var price = {{ $property->price }};
     $('#duration').on('change', function() {
-        $('#totalPrice').html("Rp " + (price*this.value) + " / Durasi");
+        $('.totalPrice').html("Rp " + (price*this.value));
     });
 </script>
 
