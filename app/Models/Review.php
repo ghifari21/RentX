@@ -10,6 +10,7 @@ class Review extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['order', 'property', 'buyer'];
 
     // order relation
     public function order(){

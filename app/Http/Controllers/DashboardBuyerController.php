@@ -131,7 +131,7 @@ class DashboardBuyerController extends Controller
             'title' => 'Riwayat Kos',
             'buyer' => $buyer,
             'seller' => Seller::firstWhere('user_id', auth()->user()->id),
-            'orders' => Order::where([['check_out', '<', today()], ['buyer_id', $buyer->id]])->get()
+            'orders' => Order::where([['check_out', '<=', today()], ['buyer_id', $buyer->id]])->get()
         ]);
     }
 }
