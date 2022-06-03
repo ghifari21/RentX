@@ -133,7 +133,7 @@
                 </div>
             </div>
             <hr>
-            {{ $property->description }}
+            {!! $property->description !!}
         </div>
     </div>
 
@@ -168,21 +168,25 @@
         </div>
         <div class="container detail-container border border-secondary rounded p-3"
             style="overflow-y: auto; height: 41vh">
-            @foreach($reviews as $review)
-            <div class="review row border rounded  p-2 mb-2">
-                <div class="col-md-4 d-flex align-items-center">
-                    <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
-                    <div class="container">
-                        <p class="mb-auto">{{$review->buyer->user->name}}</p>
-                        <p class="mb-auto">{{$review->updated_at->diffForHumans()}}</p>
+            @if ($reviews->count())
+                @foreach($reviews as $review)
+                <div class="review row border rounded  p-2 mb-2">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <i class="iconify detail-profile-icon" data-icon="healthicons:ui-user-profile"></i>
+                        <div class="container">
+                            <p class="mb-auto">{{$review->buyer->user->name}}</p>
+                            <p class="mb-auto">{{$review->updated_at->diffForHumans()}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 review-border">
+                        @for ($i = 0; $i < $review->rating; $i++) <span class="fa fa-star star-checked"></span> @endfor
+                            <p>{{$review->comment}}</p>
                     </div>
                 </div>
-                <div class="col-md-8 review-border">
-                    @for ($i = 0; $i < $review->rating; $i++) <span class="fa fa-star star-checked"></span> @endfor
-                        <p>{{$review->comment}}</p>
-                </div>
-            </div>
-            @endforeach
+                @endforeach
+            @else
+                <p class="text-center mb-3 fs-5">Tidak ditemukan ulasan.</p>
+            @endif
         </div>
     </div>
 
