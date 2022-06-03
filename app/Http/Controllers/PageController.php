@@ -38,7 +38,7 @@ class PageController extends Controller
             'title' => 'Detail Properti',
             'property' => $property,
             'properties' => Property::orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
-            'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
+            'reviews' => Review::where('property_id', $property->id)->orderBy('rating', 'desc')->get(),
         ]);
     }
 
