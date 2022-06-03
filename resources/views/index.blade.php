@@ -28,7 +28,7 @@
           @foreach ($properties->take(5) as $property)
           <a href="/property/{{ $property->slug }}" class="text-black" style="text-decoration: none;">
             <div class="card">
-                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" style="width: 100%;">
+                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" height="170">
                 <div class="card-body">
                     <p class="card-text">{{ $property->title }}</p>
                     <span class="fa fa-star star-checked">{{$property->rating}}</span>
@@ -43,7 +43,7 @@
           @foreach ($properties->skip(5) as $property)
           <a href="/property/{{ $property->slug }}" class="text-black" style="text-decoration: none;">
             <div class="card">
-                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House">
+                <img src="{{ asset('storage/' . $property->photo_1) }}" class="card-img-top" alt="House" height="170">
                 <div class="card-body">
                     <p class="card-text">{{ $property->title }}</p>
                     <span class="fa fa-star star-checked">{{$property->rating}}</span>
