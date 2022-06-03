@@ -28,7 +28,7 @@
                         <p>Invisible</p>
                     </div>
                     <div class="row">
-                        {{$order->status}}order idnya{{$order->id}}
+                        {{$order->status}}
                     </div>
                     <div class="row">
                         @if ($order->status == "paid")

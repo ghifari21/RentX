@@ -127,24 +127,33 @@ class DashboardSellerController extends Controller
         ]);
     }
 
-    public function orderAction(Request $request,Order $order){
-        if($request->input('status')=='accepted'){
+    public function orderAction(Request $request, Order $order){
+        $data = $request->validate([
+            'status' => 'required'
+        ]);
+        Order::where('id', $order->id)->update($data);
 
-            $data = $request->validate(['status'=>"required"]);
-            Order::where('id', $order->id)->update($data);
-
-            //update is_availabe di tabel property
-            $order->property->is_available = 0;
-            $order->save();
-
-            return redirect('/seller/orders')->with('success', 'Order has been accepted');
-
-        }else if($request->input('status')=='rejected'){
-            $data = $request->validate(['status'=>"required"]);
-            Order::where('id', $order->id)->update($data);
-
-            return redirect('/seller/orders')->with('success', 'Order has been rejected');
+        if ($request->status === 'rejected') {
+            return redirect('/seller/dashboard/orders')->with('success', 'Order has been rejected');
         }
+
+        return redirect('/seller/dashboard/orders')->with('success', 'Order has been accepted');
+        // if($request->status=='accepted'){
+
+        //     $data = $request->validate(['status'=>"required"]);
+        //     Order::where('id', $order->id)->update($data);
+
+        //     //update is_availabe di tabel property
+        //     $order->property->is_available = 0;
+        //     $order->save();
+
+        //     return redirect('/seller/orders')->with('success', 'Order has been accepted');
+        // }else if($request->status=='rejected'){
+        //     $data = $request->validate(['status'=>"required"]);
+        //     Order::where('id', $order->id)->update($data);
+
+        //     return redirect('/seller/orders')->with('success', 'Order has been rejected');
+        // }
 
         //Property::where('id', $property->id)->update($validatedData);
         // Order::where('id', $order->id)->update->($order);

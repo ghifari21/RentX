@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-4 d-flex align-items-end flex-column">
                     <div class="row">
-                        <p class="">Durasi: {{ $order->duration }}</p>
+                        <p class="">Durasi: {{ $order->duration }} Bulan</p>
                     </div>
                     <div class="row invisible">
                         <p>Invisible</p>
