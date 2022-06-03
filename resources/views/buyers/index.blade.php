@@ -21,39 +21,35 @@
                         <p class="mb-0">{{ $order->property->price }}</p>
                     </div>
                 </div>
-                <div class="col-4 d-flex align-items-end flex-column">
+                <div class="col-4 text-end">
                     <div class="row">
                         <p class="">Durasi: {{ $order->duration }} Bulan</p>
                     </div>
-                    <div class="row invisible">
-                        <p>Invisible</p>
+                    <div class="row">
+                        <p>{{$order->status}}</p>
                     </div>
                     <div class="row">
-                        {{$order->status}}
-                    </div>
-                    <div class="row">
-                        @if ($order->status == "accepted")
-                        <a class="btn btn-success mb-0" href="/payment/{{ $order->id }}">Bayar</a>
-                        @elseif ($order->status == "paid")
-                        <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-0"
-                                onclick="return confirm('Apakah anda yakin?')">Berhenti Sewa</button></a>
-                        @endif
-                    </div>
-                    <div class="row">
-                        @if ($order->status == "paid")
-                        <a class="btn btn-success mb-0" href="/buyers/review/dashboard/{{ $order->id }}">Review</a>
-                        @elseif($order->status == "reviewed")
-                        <button class="btn btn-success mb-0" data-bs-target="#lihatReview{{$order->id}}"
-                            data-bs-toggle="modal">Lihat
-                            Review</button>
-                        @endif
+                        <div class="col">
+                            @if ($order->status == "accepted")
+                            <a href="/payment/{{ $order->id }}"><button class="btn btn-success mb-1" >Bayar</button></a>
+                            @elseif ($order->status == "paid")
+                            <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-1"
+                                    onclick="return confirm('Apakah anda yakin?')">Berhenti</button></a>
+                            @endif
+                        </div>
+                        <div class="col">
+                            @if ($order->status == "paid")
+                            <a href="/buyers/review/dashboard/{{ $order->id }}"><button class="btn btn-success mb-1">Review</button></a>
+                            @elseif($order->status == "reviewed")
+                            <button class="btn btn-success mb-1" data-bs-target="#lihatReview{{$order->id}}"
+                                data-bs-toggle="modal">Lihat
+                                Review</button>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {{-- <button class="dropdown-item btn-detail" data-target="#detailBiblio{{ $item->id }}"
-                data-toggle="modal">Detail</button> --}}
-            {{-- Modal lihat Review --}}
             @if ($order->review)
             <div class="modal fade" id="lihatReview{{$order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -63,21 +59,6 @@
                             <h5 class="modal-title" id="exampleModalLabel">Review {{$order->review->comment}}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        {{-- <div class="modal-body">
-                            <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="card-body">
-                                        {{$order->review->comment}}
-                                    </div>
-                                </div>
-                                <div class="row g-0">
-                                    <div class="card-body">
-                                        {{$order->review->rating}}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> --}}
                         <div class="modal-body">
                             <div class="comment border rounded p-3" style="background-color: #E7F9FD;">
                                 <form action="/buyers/review/{{$order->review->id}}" method="post">
@@ -107,84 +88,11 @@
                                 </form>
                             </div>
                         </div>
-
-                        {{-- <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div> --}}
                     </div>
                 </div>
             </div>
             @endif
             @endforeach
-            {{-- <div class="row border border-secondary rounded p-3 mb-3">
-                <div class="col">
-                    <div class="row">
-                        <p class="fw-bold mb-0">{{ $propertyName }}</p>
-                        <p class="">{{ $propertyAddress }}</p>
-                    </div>
-                    <div class="row mt-2">
-                        <p class="mb-0">{{ $propertyPrice }}</p>
-                    </div>
-                </div>
-                <div class="col-4 d-flex align-items-end flex-column">
-                    <div class="row">
-                        <p class="">Durasi: {{ $duration }}</p>
-                    </div>
-                    <div class="row invisible">
-                        <p>Invisible</p>
-                    </div>
-                    <div class="row">
-                        <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row border border-secondary rounded p-3 mb-3">
-                <div class="col">
-                    <div class="row">
-                        <p class="fw-bold mb-0">Kosan Brothel Gerlong Triple X</p>
-                        <p class="">Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat
-                            45069</p>
-                    </div>
-                    <div class="row mt-2">
-                        <p class="mb-0">Rp 1.000.000</p>
-                    </div>
-                </div>
-                <div class="col-4 d-flex align-items-end flex-column">
-                    <div class="row">
-                        <p class="">Durasi: 21/06/2022 - 32/13/2069</p>
-                    </div>
-                    <div class="row invisible">
-                        <p>Invisible</p>
-                    </div>
-                    <div class="row">
-                        <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row border border-secondary rounded p-3 mb-3">
-                <div class="col">
-                    <div class="row">
-                        <p class="fw-bold mb-0">Kosan Brothel Gerlong Triple X</p>
-                        <p class="">Jl. Gerlong Tengah No. 69, RT. 06/09, Desa xxx, Kec. xxx, Kab. Bandung, Jawa Barat
-                            45069</p>
-                    </div>
-                    <div class="row mt-2">
-                        <p class="mb-0">Rp 1.000.000</p>
-                    </div>
-                </div>
-                <div class="col-4 d-flex align-items-end flex-column">
-                    <div class="row">
-                        <p class="">Durasi: 21/06/2022 - 32/13/2069</p>
-                    </div>
-                    <div class="row invisible">
-                        <p>Invisible</p>
-                    </div>
-                    <div class="row">
-                        <a href="#"><button class="btn btn-danger mb-0">Berhenti Sewa</button></a>
-                    </div>
-                </div>
-            </div> --}}
         </div>
     </div>
 </div>
