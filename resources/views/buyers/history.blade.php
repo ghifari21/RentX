@@ -28,9 +28,6 @@
                         <p>Invisible</p>
                     </div>
                     <div class="row">
-                        {{$order->status}}
-                    </div>
-                    <div class="row">
                         @if ($order->status == "paid")
                         <a class="btn btn-success mb-0" href="/buyers/review/dashboard/{{ $order->id }}">Review</a>
                         @elseif($order->status == "reviewed")

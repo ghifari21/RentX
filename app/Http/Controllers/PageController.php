@@ -37,7 +37,7 @@ class PageController extends Controller
         return view('property', [
             'title' => 'Detail Properti',
             'property' => $property,
-            'properties' => Property::where('city', $property->city)->orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
+            'properties' => Property::orderBy("rating",'desc')->orderBy("total_reviewer",'desc')->take(10)->get(),
             'reviews' =>Review::with('property')->orderBy('rating', 'desc')->get(),
         ]);
     }

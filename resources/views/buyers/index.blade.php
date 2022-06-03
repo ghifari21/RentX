@@ -25,28 +25,30 @@
                     <div class="row">
                         <p class="">Durasi: {{ $order->duration }} Bulan</p>
                     </div>
-                    <div class="row">
-                        <p>{{$order->status}}</p>
+                    <div class="row invisible">
+                        <p>Invisible</p>
                     </div>
+
                     <div class="row">
-                        <div class="col">
-                            @if ($order->status == "accepted")
-                            <a href="/payment/{{ $order->id }}"><button class="btn btn-success mb-1" >Bayar</button></a>
-                            @elseif ($order->status == "paid")
-                            <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-1"
-                                    onclick="return confirm('Apakah anda yakin?')">Berhenti</button></a>
-                            @endif
-                        </div>
-                        <div class="col">
-                            @if ($order->status == "paid")
-                            <a href="/buyers/review/dashboard/{{ $order->id }}"><button class="btn btn-success mb-1">Review</button></a>
-                            @elseif($order->status == "reviewed")
-                            <button class="btn btn-success mb-1" data-bs-target="#lihatReview{{$order->id}}"
-                                data-bs-toggle="modal">Lihat
-                                Review</button>
-                            @endif
-                        </div>
+                        @if ($order->status == "accepted")
+                        <a class="btn btn-success mb-0" href="/payment/{{ $order->id }}">Bayar</a>
+                        @elseif ($order->status == "reviewed")
+                        <button class="btn btn-success mb-0" data-bs-target="#lihatReview{{$order->id}}"
+                            data-bs-toggle="modal">Lihat
+                            Review</button>
+                        @elseif ($order->status == "paid")
+                        <a class="btn btn-success mb-0" href="/buyers/review/dashboard/{{ $order->id }}">Review</a>
+                        @endif
+
+                        @if($order->status =='paid' || $order->status=='reviewed')
+                        <a href="/dashboard/order/stop/{{ $order->id }}"><button class="btn btn-danger mb-0"
+                                onclick="return confirm('Apakah anda yakin?')">Berhenti Sewa</button></a>
+                        @endif
                     </div>
+
+
+
+
                 </div>
             </div>
 
@@ -83,7 +85,7 @@
                                             </option>
                                         </select>
                                         <br>
-                                        <button type='submit' class="btn btn-primary mt-2">Tambah</button>
+                                        <button type='submit' class="btn btn-primary mt-2">Update</button>
                                     </div>
                                 </form>
                             </div>

@@ -18,7 +18,7 @@ class DashboardBuyerController extends Controller
         $seller = Seller::firstWhere('user_id', auth()->user()->id);
         return view('buyers.index', [
             'title' => 'Dashboard',
-            'orders' => Order::where([['check_out', '>', today()], ['buyer_id', $buyer->id]])->get(),
+            'orders' => Order::where([['check_out', '>', today()], ['buyer_id', $buyer->id],['status','!=','rejected']])->get(),
             'optionName' => 'Kos Saya',
             'seller' => $seller,
             'buyer' => Buyer::firstWhere('user_id', auth()->user()->id)
